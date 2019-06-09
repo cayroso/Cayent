@@ -1,0 +1,8 @@
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Core\bin\Debug\netcoreapp2.2\Cayent.Core.deps.json
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Core\bin\Debug\netcoreapp2.2\Cayent.Core.dll
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Core\bin\Debug\netcoreapp2.2\Cayent.Core.pdb
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Core\obj\Debug\netcoreapp2.2\Cayent.Core.csproj.CoreCompileInputs.cache
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Core\obj\Debug\netcoreapp2.2\Cayent.Core.AssemblyInfoInputs.cache
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Core\obj\Debug\netcoreapp2.2\Cayent.Core.AssemblyInfo.cs
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Core\obj\Debug\netcoreapp2.2\Cayent.Core.dll
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Core\obj\Debug\netcoreapp2.2\Cayent.Core.pdb

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="CQRS\Apps\Queries\Query\" />
+    <Folder Include="CQRS\Apps\Queries\Handler\" />
+    <Folder Include="Domains\Services\" />
+    <Folder Include="Domains\Models\" />
+    <Folder Include="Infrastructure\UnitOfWork\" />
+    <Folder Include="Infrastructure\Services\" />
+    <Folder Include="Infrastructure\Repositories\" />
+    <Folder Include="Infrastructure\Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cayent.CQRS\Cayent.CQRS.csproj" />
+    <ProjectReference Include="..\Cayent.Domain\Cayent.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
