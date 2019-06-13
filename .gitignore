@@ -5,3 +5,5 @@
 /.vs
 /Cayent/.vs/Cayent/v15
 /Cayent/.vs/config
+/Cayent/Cayent.Core/bin/Debug/netcoreapp2.2
+*.user
