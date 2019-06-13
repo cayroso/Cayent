@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cayent.Domain", "Cayent.Domain\Cayent.Domain.csproj", "{E42B2BAF-9080-44A9-999C-E91CF78146BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.Domain", "Cayent.Domain\Cayent.Domain.csproj", "{E42B2BAF-9080-44A9-999C-E91CF78146BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cayent.CQRS", "Cayent.CQRS\Cayent.CQRS.csproj", "{0F550F37-168B-4765-9A67-01457DDE8B33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.CQRS", "Cayent.CQRS\Cayent.CQRS.csproj", "{0F550F37-168B-4765-9A67-01457DDE8B33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cayent.Infrastructure", "Cayent.Infrastructure\Cayent.Infrastructure.csproj", "{88BE7506-C346-4D30-8623-50CBBBEED0D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.Infrastructure", "Cayent.Infrastructure\Cayent.Infrastructure.csproj", "{88BE7506-C346-4D30-8623-50CBBBEED0D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cayent.Core", "Cayent.Core\Cayent.Core.csproj", "{426DDB0A-8A18-44E7-8975-74F1C0D041EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.Core", "Cayent.Core\Cayent.Core.csproj", "{426DDB0A-8A18-44E7-8975-74F1C0D041EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cayent.Tests", "Cayent.Tests\Cayent.Tests.csproj", "{451EB839-6609-472F-B9F4-8C5267973566}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.Web", "Cayent.Web\Cayent.Web.csproj", "{4893AF0B-4A44-4E84-B676-5B87C0EA0573}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.Tests", "Cayent.Tests\Cayent.Tests.csproj", "{61043CE1-B15F-43DB-A06C-56EA408381C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cayent.Web.App", "Cayent.Web.App\Cayent.Web.App.csproj", "{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +39,18 @@ Global
 		{426DDB0A-8A18-44E7-8975-74F1C0D041EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{426DDB0A-8A18-44E7-8975-74F1C0D041EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{426DDB0A-8A18-44E7-8975-74F1C0D041EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{451EB839-6609-472F-B9F4-8C5267973566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{451EB839-6609-472F-B9F4-8C5267973566}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{451EB839-6609-472F-B9F4-8C5267973566}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{451EB839-6609-472F-B9F4-8C5267973566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4893AF0B-4A44-4E84-B676-5B87C0EA0573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4893AF0B-4A44-4E84-B676-5B87C0EA0573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4893AF0B-4A44-4E84-B676-5B87C0EA0573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4893AF0B-4A44-4E84-B676-5B87C0EA0573}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61043CE1-B15F-43DB-A06C-56EA408381C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61043CE1-B15F-43DB-A06C-56EA408381C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61043CE1-B15F-43DB-A06C-56EA408381C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61043CE1-B15F-43DB-A06C-56EA408381C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

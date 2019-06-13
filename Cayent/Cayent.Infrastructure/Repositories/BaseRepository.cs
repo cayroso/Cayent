@@ -10,19 +10,16 @@ namespace Cayent.Infrastructure.Repositories
 {
     public abstract class BaseRepository<T> : IRepository<T> where T : Entity
     {
-        protected readonly IDbConnection DbConnection;
-        protected readonly IDbTransaction DbTransaction;
-
         public BaseRepository(IUnitOfWork unitOfWork)
         {
-            if (unitOfWork == null)
-            {
-                throw new ArgumentNullException(nameof(unitOfWork));
-            }
+            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 
-            DbConnection = unitOfWork.GetDbConnection();
-            DbTransaction = unitOfWork.GetDbTransaction();
         }
+        private readonly string RepositoryId = Guid.NewGuid().ToString();
+        private IUnitOfWork _unitOfWork;
+
+        protected IDbConnection DbConnection => _unitOfWork.GetDbConnection();
+        protected IDbTransaction DbTransaction => _unitOfWork.GetDbTransaction();
 
         public abstract T Get(string id);
         public abstract void Save(T entity);

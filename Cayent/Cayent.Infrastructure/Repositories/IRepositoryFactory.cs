@@ -12,7 +12,7 @@ namespace Cayent.Infrastructure.Repositories
         IRepository<TEntity> Create<TEntity>() where TEntity : Entity;
     }
 
-    sealed class DefaultRepositoryFactory : IRepositoryFactory
+    public sealed class DefaultRepositoryFactory : IRepositoryFactory
     {
         private readonly IContainer _container;
 

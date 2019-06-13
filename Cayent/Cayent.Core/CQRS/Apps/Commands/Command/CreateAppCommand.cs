@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cayent.Core.CQRS.Apps.Commands.Command
 {
-    public sealed class CreateAppCommand : Command
+    public sealed class CreateAppCommand : Cayent.CQRS.Commands.Command
     {
         public CreateAppCommand(string correlationId, string appId, string title, string description,
             string iconClass, string url, int sequence)

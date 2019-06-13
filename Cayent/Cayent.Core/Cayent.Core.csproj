@@ -7,17 +7,31 @@
   <ItemGroup>
     <Folder Include="CQRS\Apps\Queries\Query\" />
     <Folder Include="CQRS\Apps\Queries\Handler\" />
-    <Folder Include="Domains\Services\" />
-    <Folder Include="Domains\Models\" />
-    <Folder Include="Infrastructure\UnitOfWork\" />
-    <Folder Include="Infrastructure\Services\" />
-    <Folder Include="Infrastructure\Repositories\" />
-    <Folder Include="Infrastructure\Data\" />
+    <Folder Include="Domains\Models\Users\Events\" />
+    <Folder Include="Domains\Models\Roles\Events\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.111" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Cayent.CQRS\Cayent.CQRS.csproj" />
     <ProjectReference Include="..\Cayent.Domain\Cayent.Domain.csproj" />
+    <ProjectReference Include="..\Cayent.Infrastructure\Cayent.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\9.0.1\lib\netstandard1.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="cayent.ddl.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

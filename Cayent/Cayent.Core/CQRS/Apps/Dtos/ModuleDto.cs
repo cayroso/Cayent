@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cayent.Core.CQRS.BaseClasses;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

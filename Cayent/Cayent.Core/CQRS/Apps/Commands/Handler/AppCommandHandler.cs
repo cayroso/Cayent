@@ -1,4 +1,6 @@
 ﻿using Cayent.Core.CQRS.Apps.Commands.Command;
+using Cayent.Core.Domains.Models.Applications;
+using Cayent.Core.Domains.Models.Applications.Modules;
 using Cayent.CQRS.Commands;
 using Cayent.Domain.Repositories;
 using System;
@@ -32,7 +34,7 @@ namespace Cayent.Core.CQRS.Apps.Commands.Handler
 
         void ICommandHandler<CreateAppCommand>.Handle(CreateAppCommand command)
         {
-            var domain = new App(new domains.models.applications.AppId(command.AppId),
+            var domain = new App(new AppId(command.AppId),
                 command.Title, command.Description, command.IconClass, command.Url, command.Sequence,
                 command.DateCreated, command.DateUpdated, command.DateEnabled, command.DateDeleted);
 

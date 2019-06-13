@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cayent.Infrastructure.UnitOfWork
 {
-    public interface IUnitOfWorkFactory : IDisposable
+    public interface IUnitOfWorkFactory
     {
         IUnitOfWork Create();
     }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cayent.Core.CQRS.BaseClasses;
+using Cayent.Core.CQRS.Permissions.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
