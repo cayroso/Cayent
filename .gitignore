@@ -7,3 +7,5 @@
 /Cayent/.vs/config
 /Cayent/Cayent.Core/bin/Debug/netcoreapp2.2
 *.user
+/Cayent/Cayent.Core/obj/Debug/netcoreapp2.2
+/Cayent/Cayent.Core/obj
