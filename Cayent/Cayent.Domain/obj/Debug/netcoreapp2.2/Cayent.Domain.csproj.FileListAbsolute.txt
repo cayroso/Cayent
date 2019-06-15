@@ -1,0 +1,9 @@
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\bin\Debug\netcoreapp2.2\Cayent.Domain.deps.json
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\bin\Debug\netcoreapp2.2\Cayent.Domain.dll
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\bin\Debug\netcoreapp2.2\Cayent.Domain.pdb
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.csprojAssemblyReference.cache
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.AssemblyInfoInputs.cache
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.AssemblyInfo.cs
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.dll
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.pdb

@@ -6,16 +6,16 @@ namespace Cayent.Domain.Models.Events
 {
     public interface IDomainEvent
     {
-        DateTime OccurredAt { get; set; }
+        DateTimeOffset OccurredAt { get; set; }
     }
 
     public abstract class DomainEvent : IDomainEvent
     {
         public DomainEvent()
         {
-            OccurredAt = DateTime.UtcNow;
+            OccurredAt = DateTimeOffset.UtcNow;
         }
 
-        public DateTime OccurredAt { get; set; }
+        public DateTimeOffset OccurredAt { get; set; }
     }
 }

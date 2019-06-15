@@ -6,17 +6,17 @@ namespace Cayent.Core.CQRS.Apps.Commands.Command
 {
     public sealed class CreateAppCommand : Cayent.CQRS.Commands.Command
     {
-        public CreateAppCommand(string correlationId, string appId, string title, string description,
+        public CreateAppCommand(string correlationId, string appId, string title, string description, 
             string iconClass, string url, int sequence)
             : this(correlationId, appId, title, description, iconClass, url, sequence,
-                  DateTime.UtcNow, DateTime.UtcNow, DateTime.MaxValue, DateTime.MaxValue)
+                  DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, DateTimeOffset.MaxValue, DateTimeOffset.MaxValue)
         {
 
         }
 
         public CreateAppCommand(string correlationId, string appId, string title, string description,
             string iconClass, string url, int sequence,
-            DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
+            DateTimeOffset dateCreated, DateTimeOffset dateUpdated, DateTimeOffset dateEnabled, DateTimeOffset dateDeleted)
             : base(correlationId)
         {
             AppId = appId;
@@ -39,9 +39,9 @@ namespace Cayent.Core.CQRS.Apps.Commands.Command
         public string Url { get; private set; }
         public int Sequence { get; private set; }
 
-        public DateTime DateCreated { get; private set; }
-        public DateTime DateUpdated { get; private set; }
-        public DateTime DateEnabled { get; private set; }
-        public DateTime DateDeleted { get; private set; }
+        public DateTimeOffset DateCreated { get; private set; }
+        public DateTimeOffset DateUpdated { get; private set; }
+        public DateTimeOffset DateEnabled { get; private set; }
+        public DateTimeOffset DateDeleted { get; private set; }
     }
 }

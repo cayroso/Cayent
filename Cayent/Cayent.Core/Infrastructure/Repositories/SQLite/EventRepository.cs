@@ -37,7 +37,7 @@ insert into core_Event(Id, correlationId, TenantId, Type, Event, RetryCount, Dat
 ;
 ";
             var eventData = @event.ToEventData();
-            eventData.DateSent = DateTime.UtcNow;
+            eventData.DateSent = DateTimeOffset.UtcNow;
 
             _dbConnection.Execute(sql, eventData, _dbTransaction);
         }
@@ -62,7 +62,7 @@ set     DateSuccess = @DateSuccess
 where   Id = @Id
 ;
 ";
-            _dbConnection.Execute(sql, new { Id = eventId, DateSuccess = DateTime.UtcNow }, _dbTransaction);
+            _dbConnection.Execute(sql, new { Id = eventId, DateSuccess = DateTimeOffset.UtcNow }, _dbTransaction);
         }
 
         void IEventRepository.UpdateDateFailure(string eventId)
@@ -73,7 +73,7 @@ set     DateFailed = @DateFailure
 where   Id = @Id
 ;
 ";
-            _dbConnection.Execute(sql, new { Id = eventId, DateFailure = DateTime.UtcNow }, _dbTransaction);
+            _dbConnection.Execute(sql, new { Id = eventId, DateFailure = DateTimeOffset.UtcNow }, _dbTransaction);
         }
 
         void IEventRepository.UpdateTransactionDateFailure(string correlationId)
@@ -84,7 +84,7 @@ set     DateFailed = @DateFailure
 where   correlationId = @correlationId
 ;
 ";
-            _dbConnection.Execute(sql, new { correlationId = correlationId, DateFailure = DateTime.UtcNow }, _dbTransaction);
+            _dbConnection.Execute(sql, new { correlationId = correlationId, DateFailure = DateTimeOffset.UtcNow }, _dbTransaction);
         }
 
 
@@ -115,8 +115,8 @@ order by evt.DateSent asc
 ";
             var items = _dbConnection.Query<EventData>(sql, new
             {
-                DateSuccess = DateTime.MaxValue,
-                DateFailed = DateTime.MaxValue
+                DateSuccess = DateTimeOffset.MaxValue,
+                DateFailed = DateTimeOffset.MaxValue
             }, _dbTransaction).AsList();
 
             var events = items.Select(p => p.DeserializeEvent()).ToList();

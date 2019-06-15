@@ -19,13 +19,13 @@ namespace Cayent.Web.App.Pages
             //var cmd2 = new CreateAppCommand(string.Empty, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), string.Empty, 1);
             //commandHandlerDispatcher.Handle(cmd2);
 
-            //var cmd2 = new CreateModuleCommand(string.Empty, cmd1.AppId, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), "1x", "x", "x", 1);
-            //var cmd3 = new CreateModuleCommand(string.Empty, cmd1.AppId, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), "2x", "x", "x", 1);
+            var cmd2 = new CreateModuleCommand(string.Empty, cmd1.AppId, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), "1x", "x", "x", 1);
+            var cmd3 = new CreateModuleCommand(string.Empty, cmd1.AppId, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), "2x", "x", "x", 1);
 
 
             commandHandlerDispatcher.Handle(cmd1);
-            //commandHandlerDispatcher.Handle(cmd2);
-            //commandHandlerDispatcher.Handle(cmd3);
+            commandHandlerDispatcher.Handle(cmd2);
+            commandHandlerDispatcher.Handle(cmd3); 
 
 
 

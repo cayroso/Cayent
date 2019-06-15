@@ -8,16 +8,16 @@ namespace Cayent.CQRS.Events
     {
         string Id { get; set; }
         string CorrelationId { get; set; }
-        DateTime OccurredAt { get; set; }
+        DateTimeOffset OccurredAt { get; set; }
     }
 
     public abstract class Event : IEvent
     {
         public string CorrelationId { get; set; }
         public string Id { get; set; }
-        public DateTime OccurredAt { get; set; }
+        public DateTimeOffset OccurredAt { get; set; }
 
-        public Event(string correlationId, string id, DateTime occuredAt)
+        public Event(string correlationId, string id, DateTimeOffset occuredAt)
         {
             Id = id;
             CorrelationId = correlationId;

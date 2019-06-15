@@ -1,0 +1,14 @@
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\bin\Debug\netcoreapp2.2\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\bin\Debug\netcoreapp2.2\Cayent.Tests.deps.json
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\bin\Debug\netcoreapp2.2\Cayent.Tests.runtimeconfig.json
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\bin\Debug\netcoreapp2.2\Cayent.Tests.runtimeconfig.dev.json
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\bin\Debug\netcoreapp2.2\Cayent.Tests.dll
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\bin\Debug\netcoreapp2.2\Cayent.Tests.pdb
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\obj\Debug\netcoreapp2.2\Cayent.Tests.csprojAssemblyReference.cache
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\obj\Debug\netcoreapp2.2\Cayent.Tests.csproj.CoreCompileInputs.cache
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\obj\Debug\netcoreapp2.2\Cayent.Tests.AssemblyInfoInputs.cache
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\obj\Debug\netcoreapp2.2\Cayent.Tests.AssemblyInfo.cs
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\obj\Debug\netcoreapp2.2\Cayent.Tests.dll
+C:\Users\ChristopherAyroso\Source\Repos\Cayent\Cayent\Cayent.Tests\obj\Debug\netcoreapp2.2\Cayent.Tests.pdb

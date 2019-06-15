@@ -41,12 +41,12 @@ namespace Cayent.Core.Domains.Models.Applications.Modules
 
         public Module(ModuleId moduleId, AppId appId, string title, string description, string iconClass, string url, int sequence)
             : this(moduleId, appId, title, description, iconClass, url, sequence,
-                  DateTime.UtcNow, DateTime.UtcNow, DateTime.MaxValue, DateTime.MaxValue)
+                  DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, DateTimeOffset.MaxValue, DateTimeOffset.MaxValue)
         {
         }
 
         public Module(ModuleId moduleId, AppId appId, string title, string description, string iconClass, string url, int sequence,
-            DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
+            DateTimeOffset dateCreated, DateTimeOffset dateUpdated, DateTimeOffset dateEnabled, DateTimeOffset dateDeleted)
             : base(dateCreated, dateUpdated, dateEnabled, dateDeleted)
         {
             Apply(new ModuleCreated(moduleId, appId, title, description, iconClass, url, sequence,

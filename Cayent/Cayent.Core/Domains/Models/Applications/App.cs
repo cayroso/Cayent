@@ -50,12 +50,12 @@ namespace Cayent.Core.Domains.Models.Applications
 
         public App(AppId appId, string title, string description, string iconClass, string url, int sequence)
             : this(appId, title, description, iconClass, url, sequence,
-                  DateTime.UtcNow, DateTime.UtcNow, DateTime.MaxValue, DateTime.MaxValue)
+                  DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, DateTimeOffset.MaxValue, DateTimeOffset.MaxValue)
         {
 
         }
         public App(AppId appId, string title, string description, string iconClass, string url, int sequence,
-            DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
+            DateTimeOffset dateCreated, DateTimeOffset dateUpdated, DateTimeOffset dateEnabled, DateTimeOffset dateDeleted)
             : base(dateCreated, dateUpdated, dateEnabled, dateDeleted)
         {
             Apply(new AppCreated(appId, title, description, iconClass, url, sequence,
@@ -64,7 +64,7 @@ namespace Cayent.Core.Domains.Models.Applications
 
         public void Enable()
         {
-            if (DateEnabled < DateTime.MaxValue)
+            if (DateEnabled < DateTimeOffset.MaxValue)
             {
                 Apply(new AppEnabled(AppId));
             }
@@ -72,7 +72,7 @@ namespace Cayent.Core.Domains.Models.Applications
 
         public void Disable()
         {
-            if (DateEnabled == DateTime.MaxValue)
+            if (DateEnabled == DateTimeOffset.MaxValue)
             {
                 Apply(new AppDisabled(AppId));
             }
@@ -169,7 +169,7 @@ namespace Cayent.Core.Domains.Models.Applications
 
         void When(AppEnabled e)
         {
-            DateEnabled = DateTime.MaxValue;
+            DateEnabled = DateTimeOffset.MaxValue;
         }
 
         void When(AppDisabled e)

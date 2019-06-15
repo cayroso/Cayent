@@ -7,12 +7,12 @@ namespace Cayent.Core.CQRS.BaseClasses
 {
     public static class DtoHelper
     {
-        public static DateTime GetMinimum(params DateTime[] dates)
+        public static DateTimeOffset GetMinimum(params DateTimeOffset[] dates)
         {
             return dates.Min();
         }
 
-        public static DateTime GetMax(params DateTime[] dates)
+        public static DateTimeOffset GetMax(params DateTimeOffset[] dates)
         {
             return dates.Max();
         }
