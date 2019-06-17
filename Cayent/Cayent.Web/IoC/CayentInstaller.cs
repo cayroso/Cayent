@@ -45,9 +45,6 @@ namespace Cayent.Web.IoC
 
         void InstallRepositories(IWindsorContainer container)
         {
-
-
-
             var config = container.Resolve<IConfiguration>();
 
             //var dbFile = Path.Combine(AppDomain.CurrentDomain.GetData("DataDirectory").ToString(), config[ ConfigurationManager.AppSettings["db.name"]);
@@ -89,7 +86,8 @@ namespace Cayent.Web.IoC
             }
 
             
-            var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies()
+            //var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies()
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(p => p.FullName.StartsWith(NamespacePrefix))
                 .Select(p => p.FullName)
                 .OrderBy(p => p)
@@ -107,7 +105,7 @@ namespace Cayent.Web.IoC
                         return uow;
                     })
                     .LifestyleTransient()
-                    .CrossWired()
+                    //.CrossWired()
                     ,
                 Component.For<IUnitOfWorkFactory>()
                     .UsingFactoryMethod((k) =>
@@ -203,8 +201,9 @@ namespace Cayent.Web.IoC
                     .CrossWired()
                 );
 
-            var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies()
-                .Where(p => p.FullName.StartsWith(NamespacePrefix))
+            //var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies()
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(p => !p.IsDynamic && p.FullName.StartsWith(NamespacePrefix))
                 .Select(p => p.FullName)
                 .OrderBy(p => p)
                 .ToList();

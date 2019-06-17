@@ -15,7 +15,7 @@ namespace Cayent.Domain.Models.Entities
 
     public abstract class Entity : IEntity
     {
-        public Entity(DateTimeOffset dateCreated, DateTimeOffset dateUpdated, DateTimeOffset dateEnabled, DateTimeOffset dateDeleted)
+        public Entity(DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
         {
             DateCreated = dateCreated;
             DateUpdated = dateUpdated;
@@ -24,10 +24,10 @@ namespace Cayent.Domain.Models.Entities
         }
 
         public int Version { get; protected set; }
-        public DateTimeOffset DateCreated { get; protected set; }
-        public DateTimeOffset DateUpdated { get; protected set; }
-        public DateTimeOffset DateEnabled { get; protected set; }
-        public DateTimeOffset DateDeleted { get; protected set; }
+        public DateTime DateCreated { get; protected set; }
+        public DateTime DateUpdated { get; protected set; }
+        public DateTime DateEnabled { get; protected set; }
+        public DateTime DateDeleted { get; protected set; }
 
         readonly IList<IDomainEvent> domainEvents = new List<IDomainEvent>();
         public IReadOnlyCollection<IDomainEvent> DomainEvents => new ReadOnlyCollection<IDomainEvent>(this.domainEvents);

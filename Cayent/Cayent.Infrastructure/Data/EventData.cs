@@ -13,9 +13,9 @@ namespace Cayent.Infrastructure.Data
         public string Event { get; set; }
 
         public int RetryCount { get; set; }
-        public DateTimeOffset DateSent { get; set; }
-        public DateTimeOffset DateFailed { get; set; }
-        public DateTimeOffset DateSuccess { get; set; }
+        public DateTime DateSent { get; set; }
+        public DateTime DateFailed { get; set; }
+        public DateTime DateSuccess { get; set; }
 
         public EventData()
         {
@@ -26,9 +26,9 @@ namespace Cayent.Infrastructure.Data
             Event = string.Empty;
 
             RetryCount = 0;
-            DateSent = DateTimeOffset.MinValue;
-            DateFailed = DateTimeOffset.MaxValue;
-            DateSuccess = DateTimeOffset.MaxValue;
+            DateSent = DateTime.MinValue;
+            DateFailed = DateTime.MaxValue;
+            DateSuccess = DateTime.MaxValue;
         }
     }
 }

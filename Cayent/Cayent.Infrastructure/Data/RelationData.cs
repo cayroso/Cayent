@@ -6,19 +6,19 @@ namespace Cayent.Infrastructure.Data
 {
     public interface IRelationData
     {
-        DateTimeOffset DateCreated { get; set; }
-        DateTimeOffset DateEnabled { get; set; }
+        DateTime DateCreated { get; set; }
+        DateTime DateEnabled { get; set; }
     }
 
     public abstract class RelationData
     {
-        public DateTimeOffset DateCreated { get; set; }
-        public DateTimeOffset DateEnabled { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateEnabled { get; set; }
 
         public RelationData()
         {
-            DateCreated = DateTimeOffset.Now;
-            DateEnabled = DateTimeOffset.MaxValue;
+            DateCreated = DateTime.Now;
+            DateEnabled = DateTime.MaxValue;
         }
     }
 }

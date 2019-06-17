@@ -6,14 +6,14 @@ namespace Cayent.Core.CQRS.BaseClasses
 {
     public class RelationDto
     {
-        public DateTimeOffset DateCreated { get; set; }
-        public DateTimeOffset DateEnabled { get; set; }
-        public bool IsEnabled { get { return DateEnabled > DateTimeOffset.UtcNow; } }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateEnabled { get; set; }
+        public bool IsEnabled { get { return DateEnabled > DateTime.UtcNow; } }
 
         public RelationDto()
         {
-            DateCreated = DateTimeOffset.Now;
-            DateEnabled = DateTimeOffset.MaxValue;
+            DateCreated = DateTime.Now;
+            DateEnabled = DateTime.MaxValue;
         }
     }
 }

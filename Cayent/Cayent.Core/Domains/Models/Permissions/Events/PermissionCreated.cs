@@ -9,7 +9,7 @@ namespace Cayent.Core.Domains.Models.Permissions.Events
     public sealed class PermissionCreated : DomainEvent
     {
         public PermissionCreated(PermissionId permissionId, AppId appId, string name, string description,
-            DateTimeOffset dateCreated, DateTimeOffset dateUpdated, DateTimeOffset dateEnabled, DateTimeOffset dateDeleted)
+            DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
         {
             PermissionId = permissionId;
             AppId = appId;
@@ -27,9 +27,9 @@ namespace Cayent.Core.Domains.Models.Permissions.Events
         public string Name { get; private set; }
         public string Description { get; private set; }
 
-        public DateTimeOffset DateCreated { get; private set; }
-        public DateTimeOffset DateUpdated { get; private set; }
-        public DateTimeOffset DateEnabled { get; private set; }
-        public DateTimeOffset DateDeleted { get; private set; }
+        public DateTime DateCreated { get; private set; }
+        public DateTime DateUpdated { get; private set; }
+        public DateTime DateEnabled { get; private set; }
+        public DateTime DateDeleted { get; private set; }
     }
 }

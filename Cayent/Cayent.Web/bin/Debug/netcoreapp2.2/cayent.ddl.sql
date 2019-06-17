@@ -225,38 +225,38 @@ create table core_Edge
 --	Core Views
 --	///////////////////////////////
 
---create view core_vwModule
---as
---	select	m.AppId
---			, m.Id			
---			, m.Title
---			, m.Description
---			, m.IconClass
---			, m.Url
---			, m.Sequence
+create view core_vwModule
+as
+	select	m.AppId
+			, m.Id			
+			, m.Title
+			, m.Description
+			, m.IconClass
+			, m.Url
+			, m.Sequence
 			
---			, m.DateCreated
---			, m.DateUpdated
---			, cast((case when m.DateEnabled < a.DateEnabled then m.DateEnabled else a.DateEnabled end) as datetime) as 'DateEnabled'
---			, m.DateDeleted
---	from	core_Module m
---	join	core_App a on (m.AppId = a.Id)
---;
+			, m.DateCreated
+			, m.DateUpdated
+			, cast((case when m.DateEnabled < a.DateEnabled then m.DateEnabled else a.DateEnabled end) as datetime) as 'DateEnabled'
+			, m.DateDeleted
+	from	core_Module m
+	join	core_App a on (m.AppId = a.Id)
+;
 
---create view core_vwPermission
---as
---	select	p.Id
---			, p.AppId
---			, p.Name
---			, p.Description
+create view core_vwPermission
+as
+	select	p.Id
+			, p.AppId
+			, p.Name
+			, p.Description
 			
---			, p.DateCreated
---			, p.DateUpdated
---			, cast((case when p.DateEnabled < a.DateEnabled then p.DateEnabled else a.DateEnabled end) as datetime) as 'DateEnabled'
---			, p.DateDeleted
---	from	core_Permission p
---	join	core_App a on (p.AppId = a.Id)
---;
+			, p.DateCreated
+			, p.DateUpdated
+			, cast((case when p.DateEnabled < a.DateEnabled then p.DateEnabled else a.DateEnabled end) as datetime) as 'DateEnabled'
+			, p.DateDeleted
+	from	core_Permission p
+	join	core_App a on (p.AppId = a.Id)
+;
 
 --create view core_vwMembership
 --as

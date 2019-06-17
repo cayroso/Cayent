@@ -7,27 +7,27 @@ namespace Cayent.Infrastructure.Data
     public interface IEntityData
     {
         string Id { get; set; }
-        DateTimeOffset DateCreated { get; set; }
-        DateTimeOffset DateUpdated { get; set; }
-        DateTimeOffset DateEnabled { get; set; }
-        DateTimeOffset DateDeleted { get; set; }
+        DateTime DateCreated { get; set; }
+        DateTime DateUpdated { get; set; }
+        DateTime DateEnabled { get; set; }
+        DateTime DateDeleted { get; set; }
     }
 
     public abstract class EntityData : IEntityData
     {
         public string Id { get; set; }
-        public DateTimeOffset DateCreated { get; set; }
-        public DateTimeOffset DateUpdated { get; set; }
-        public DateTimeOffset DateEnabled { get; set; }
-        public DateTimeOffset DateDeleted { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
+        public DateTime DateEnabled { get; set; }
+        public DateTime DateDeleted { get; set; }
 
         public EntityData()
         {
             Id = string.Empty;
-            DateCreated = DateTimeOffset.Now;
-            DateUpdated = DateTimeOffset.Now;
-            DateEnabled = DateTimeOffset.MaxValue;
-            DateDeleted = DateTimeOffset.MinValue;
+            DateCreated = DateTime.Now;
+            DateUpdated = DateTime.Now;
+            DateEnabled = DateTime.MaxValue;
+            DateDeleted = DateTime.MinValue;
         }
     }
 }

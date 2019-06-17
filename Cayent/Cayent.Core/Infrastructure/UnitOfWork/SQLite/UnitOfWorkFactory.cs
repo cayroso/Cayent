@@ -54,8 +54,8 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
             dbConnection.Open();
 
             //  NOTE: Apply Pragmas in Production
-            //var pragmas = "PRAGMA version=3; PRAGMA DateTimeKind=Utc; PRAGMA synchronous=OFF; PRAGMA journal_mode=WAL;";
-            //dbConnection.Execute(pragmas);
+            var pragmas = "PRAGMA version=3; PRAGMA DateTimeKind=Utc; PRAGMA synchronous=OFF; PRAGMA journal_mode=WAL;";
+            dbConnection.Execute(pragmas);
 
             _dbTransaction = dbConnection.BeginTransaction(IsolationLevel.ReadCommitted);
         }

@@ -6,19 +6,19 @@ namespace Cayent.Core.CQRS.BaseClasses
 {
     public abstract class BaseDto
     {
-        public DateTimeOffset DateCreated { get; set; }
-        public DateTimeOffset DateUpdated { get; set; }
-        public DateTimeOffset DateEnabled { get; set; }
-        public DateTimeOffset DateDeleted { get; set; }
-        public bool IsEnabled { get { return DateEnabled > DateTimeOffset.UtcNow; } }
-        public bool IsDeleted { get { return DateDeleted < DateTimeOffset.UtcNow; } }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
+        public DateTime DateEnabled { get; set; }
+        public DateTime DateDeleted { get; set; }
+        public bool IsEnabled { get { return DateEnabled > DateTime.UtcNow; } }
+        public bool IsDeleted { get { return DateDeleted < DateTime.UtcNow; } }
 
         public BaseDto()
         {
-            DateCreated = DateTimeOffset.MinValue;
-            DateUpdated = DateTimeOffset.MinValue;
-            DateEnabled = DateTimeOffset.MaxValue;
-            DateDeleted = DateTimeOffset.MaxValue;
+            DateCreated = DateTime.MinValue;
+            DateUpdated = DateTime.MinValue;
+            DateEnabled = DateTime.MaxValue;
+            DateDeleted = DateTime.MaxValue;
         }
     }
 

@@ -138,7 +138,7 @@ where   Id = @Id
             DbConnection.Execute(sql, new
             {
                 Id = evt.AppId.Id,
-                DateEnabled = DateTimeOffset.MaxValue
+                DateEnabled = DateTime.MaxValue
             }, DbTransaction);
 
         }
@@ -171,7 +171,7 @@ insert into core_Permission(AppId, PermissionId, DateCreated, DateEnabled)
                 AppId = evt.AppId.Id,
                 PermissionId = evt.PermissionId.Id,
                 DateCreated = evt.OccurredAt,
-                DateEnabled = DateTimeOffset.MaxValue
+                DateEnabled = DateTime.MaxValue
             }, DbTransaction);
 
         }
@@ -187,7 +187,7 @@ where   Id = @Id
             DbConnection.Execute(sql, new
             {
                 Id = evt.PermissionId.Id,
-                DateEnabled = DateTimeOffset.MaxValue
+                DateEnabled = DateTime.MaxValue
             }, DbTransaction);
 
         }
@@ -234,7 +234,7 @@ where   Id = @Id
             DbConnection.Execute(sql, new
             {
                 Id = evt.ModuleId.Id,
-                DateEnabled = DateTimeOffset.MaxValue
+                DateEnabled = DateTime.MaxValue
             }, DbTransaction);
         }
 

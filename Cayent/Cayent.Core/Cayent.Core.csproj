@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Apps\Queries\Query\" />
-    <Folder Include="CQRS\Apps\Queries\Handler\" />
     <Folder Include="Domains\Models\Users\Events\" />
     <Folder Include="Domains\Models\Roles\Events\" />
   </ItemGroup>

@@ -8,7 +8,7 @@ namespace Cayent.Core.Domains.Models.Applications.Modules.Events
     public sealed class ModuleCreated : DomainEvent
     {
         public ModuleCreated(ModuleId moduleId, AppId appId, string title, string description, string iconClass, string url, int sequence,
-            DateTimeOffset dateCreated, DateTimeOffset dateUpdated, DateTimeOffset dateEnabled, DateTimeOffset dateDeleted)
+            DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
         {
             ModuleId = moduleId;
             AppId = appId;
@@ -32,9 +32,9 @@ namespace Cayent.Core.Domains.Models.Applications.Modules.Events
         public string Url { get; private set; }
         public int Sequence { get; private set; }
 
-        public DateTimeOffset DateCreated { get; private set; }
-        public DateTimeOffset DateUpdated { get; private set; }
-        public DateTimeOffset DateEnabled { get; private set; }
-        public DateTimeOffset DateDeleted { get; private set; }
+        public DateTime DateCreated { get; private set; }
+        public DateTime DateUpdated { get; private set; }
+        public DateTime DateEnabled { get; private set; }
+        public DateTime DateDeleted { get; private set; }
     }
 }

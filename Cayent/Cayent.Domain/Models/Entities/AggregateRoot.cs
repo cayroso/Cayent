@@ -10,7 +10,7 @@ namespace Cayent.Domain.Models.Entities
 
     public abstract class AggregateRoot : Entity, IAggregateRoot
     {
-        public AggregateRoot(DateTimeOffset dateCreated, DateTimeOffset dateUpdated, DateTimeOffset dateEnabled, DateTimeOffset dateDeleted)
+        public AggregateRoot(DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
             : base(dateCreated, dateUpdated, dateEnabled, dateDeleted)
         {
         }

@@ -39,24 +39,26 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
 
         void IUnitOfWork.Commit()
         {
-            if (_dbTransaction == null)
+            if (_dbTransaction.Connection == null)
             {
                 throw new InvalidOperationException("transaction has already been committed/rolledback.");
             }
 
             _dbTransaction.Commit();
-            _dbTransaction = null;
+            //_dbTransaction.Dispose();
+            //_dbTransaction = null;
         }
 
         void IUnitOfWork.Rollback()
         {
-            if (_dbTransaction == null)
+            if (_dbTransaction.Connection == null)
             {
                 throw new InvalidOperationException("transaction has already been committed/rolledback.");
             }
 
             _dbTransaction.Rollback();
-            _dbTransaction = null;
+            //_dbTransaction.Dispose();
+            //_dbTransaction = null;
         }
 
         #region IDisposable Support
@@ -68,12 +70,18 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects).
                     if (_dbTransaction != null)
                     {
-                        _dbTransaction.Rollback();
-                        _dbTransaction = null;
+                        // TODO: dispose managed state (managed objects).
+                        if (_dbTransaction.Connection != null)
+                        {
+                            _dbTransaction.Rollback();
+                            //_dbTransaction.Dispose();
+                            //    _dbTransaction = null;
+                        }
+                        //_dbTransaction.Dispose();
                     }
+
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.

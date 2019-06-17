@@ -12769,24 +12769,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ChristopherAyroso\\.nuget\\packages\\": {},
+    "C:\\Users\\cayent\\.nuget\\packages\\": {},
+    "C:\\ProgramData\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Web.App\\Cayent.Web.App.csproj",
+      "projectUniqueName": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Web.App\\Cayent.Web.App.csproj",
       "projectName": "Cayent.Web.App",
-      "projectPath": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Web.App\\Cayent.Web.App.csproj",
-      "packagesPath": "C:\\Users\\ChristopherAyroso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Web.App\\obj\\",
+      "projectPath": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Web.App\\Cayent.Web.App.csproj",
+      "packagesPath": "C:\\Users\\cayent\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Web.App\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\ProgramData\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ChristopherAyroso\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\cayent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -12798,8 +12801,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Web\\Cayent.Web.csproj": {
-              "projectPath": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Web\\Cayent.Web.csproj"
+            "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Web\\Cayent.Web.csproj": {
+              "projectPath": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Web\\Cayent.Web.csproj"
             }
           }
         }

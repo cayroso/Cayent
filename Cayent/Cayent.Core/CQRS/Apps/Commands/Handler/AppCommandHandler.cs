@@ -10,10 +10,10 @@ using System.Text;
 namespace Cayent.Core.CQRS.Apps.Commands.Handler
 {
     public sealed class AppCommandHandler :
-        ICommandHandler<CreateAppCommand>//,
-        //ICommandHandler<EnableAppCommand>,
-        //ICommandHandler<DisableAppCommand>,
-        //ICommandHandler<CreateModuleCommand>,
+        ICommandHandler<CreateAppCommand>,
+        ICommandHandler<EnableAppCommand>,
+        ICommandHandler<DisableAppCommand>,
+        ICommandHandler<CreateModuleCommand>//,
         //ICommandHandler<EnableAppModuleCommand>,
         //ICommandHandler<DisableAppModuleCommand>,
         //ICommandHandler<AddAppPermissionCommand>,
@@ -41,32 +41,32 @@ namespace Cayent.Core.CQRS.Apps.Commands.Handler
             _repoApplication.Save(domain);
         }
 
-        //void ICommandHandler<EnableAppCommand>.Handle(EnableAppCommand command)
-        //{
-        //    var domain = _repoApplication.Get(command.AppId);
+        void ICommandHandler<EnableAppCommand>.Handle(EnableAppCommand command)
+        {
+            var domain = _repoApplication.Get(command.AppId);
 
-        //    domain.Enable();
+            domain.Enable();
 
-        //    _repoApplication.Save(domain);
-        //}
+            _repoApplication.Save(domain);
+        }
 
-        //void ICommandHandler<DisableAppCommand>.Handle(DisableAppCommand command)
-        //{
-        //    var domain = _repoApplication.Get(command.AppId);
+        void ICommandHandler<DisableAppCommand>.Handle(DisableAppCommand command)
+        {
+            var domain = _repoApplication.Get(command.AppId);
 
-        //    domain.Disable();
+            domain.Disable();
 
-        //    _repoApplication.Save(domain);
-        //}
+            _repoApplication.Save(domain);
+        }
 
-        //void ICommandHandler<CreateModuleCommand>.Handle(CreateModuleCommand command)
-        //{
-        //    var domain = new Module(new ModuleId(command.ModuleId), new domains.models.applications.AppId(command.AppId),
-        //        command.Title, command.Description, command.IconClass, command.Url, command.Sequence,
-        //        command.DateCreated, command.DateUpdated, command.DateEnabled, command.DateDeleted);
+        void ICommandHandler<CreateModuleCommand>.Handle(CreateModuleCommand command)
+        {
+            var domain = new Module(new ModuleId(command.ModuleId), new AppId(command.AppId),
+                command.Title, command.Description, command.IconClass, command.Url, command.Sequence,
+                command.DateCreated, command.DateUpdated, command.DateEnabled, command.DateDeleted);
 
-        //    _repoModule.Save(domain);
-        //}
+            _repoModule.Save(domain);
+        }
 
         //void ICommandHandler<AddAppPermissionCommand>.Handle(AddAppPermissionCommand command)
         //{

@@ -35,14 +35,14 @@ namespace Cayent.Core.Domains.Models.Permissions
 
         public Permission(PermissionId permissionId, AppId appId, string name, string description)
             : this(permissionId, appId, name, description,
-                 DateTimeOffset.UtcNow, DateTimeOffset.UtcNow, DateTimeOffset.MaxValue, DateTimeOffset.MaxValue)
+                 DateTime.UtcNow, DateTime.UtcNow, DateTime.MaxValue, DateTime.MaxValue)
         {
 
 
         }
 
         public Permission(PermissionId permissionId, AppId appId, string name, string description,
-            DateTimeOffset dateCreated, DateTimeOffset dateUpdated, DateTimeOffset dateEnabled, DateTimeOffset dateDeleted)
+            DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
             : base(dateCreated, dateUpdated, dateEnabled, dateDeleted)
         {
             Apply(new PermissionCreated(permissionId, appId, name, description, dateCreated, dateUpdated, dateEnabled, dateDeleted));

@@ -718,24 +718,27 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ChristopherAyroso\\.nuget\\packages\\": {},
+    "C:\\Users\\cayent\\.nuget\\packages\\": {},
+    "C:\\ProgramData\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Infrastructure\\Cayent.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Infrastructure\\Cayent.Infrastructure.csproj",
       "projectName": "Cayent.Infrastructure",
-      "projectPath": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Infrastructure\\Cayent.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\ChristopherAyroso\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Infrastructure\\Cayent.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\cayent\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\ProgramData\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ChristopherAyroso\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\cayent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -747,11 +750,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.CQRS\\Cayent.CQRS.csproj": {
-              "projectPath": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.CQRS\\Cayent.CQRS.csproj"
+            "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.CQRS\\Cayent.CQRS.csproj": {
+              "projectPath": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.CQRS\\Cayent.CQRS.csproj"
             },
-            "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Domain\\Cayent.Domain.csproj": {
-              "projectPath": "C:\\Users\\ChristopherAyroso\\Source\\Repos\\Cayent\\Cayent\\Cayent.Domain\\Cayent.Domain.csproj"
+            "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Domain\\Cayent.Domain.csproj": {
+              "projectPath": "C:\\Users\\cayent\\source\\repos\\Cayent\\Cayent\\Cayent.Domain\\Cayent.Domain.csproj"
             }
           }
         }
