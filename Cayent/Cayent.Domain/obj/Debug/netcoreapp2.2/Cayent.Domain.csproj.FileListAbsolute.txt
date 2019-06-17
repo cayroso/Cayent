@@ -15,3 +15,4 @@ C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2
 C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.AssemblyInfo.cs
 C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.dll
 C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.pdb
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.Domain\obj\Debug\netcoreapp2.2\Cayent.Domain.csprojAssemblyReference.cache

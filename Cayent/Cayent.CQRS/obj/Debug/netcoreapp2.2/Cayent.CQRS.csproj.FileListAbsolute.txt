@@ -15,3 +15,4 @@ C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.CQRS\obj\Debug\netcoreapp2.2\C
 C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.CQRS\obj\Debug\netcoreapp2.2\Cayent.CQRS.AssemblyInfo.cs
 C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.CQRS\obj\Debug\netcoreapp2.2\Cayent.CQRS.dll
 C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.CQRS\obj\Debug\netcoreapp2.2\Cayent.CQRS.pdb
+C:\Users\cayent\source\repos\Cayent\Cayent\Cayent.CQRS\obj\Debug\netcoreapp2.2\Cayent.CQRS.csprojAssemblyReference.cache

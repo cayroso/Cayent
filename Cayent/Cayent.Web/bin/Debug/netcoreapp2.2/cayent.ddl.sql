@@ -258,132 +258,129 @@ as
 	join	core_App a on (p.AppId = a.Id)
 ;
 
---create view core_vwMembership
---as
---	select	m.Id
---			, m.TenantId
+create view core_vwMembership
+as
+	select	m.Id
+			, m.TenantId
+			, m.DateCreated
+			, m.DateUpdated
+			, m.DateEnabled
+			, m.DateDeleted
+	from	core_Membership m
+	join	core_User u on (m.Id = u.Id)
+;
+
+create view core_vwUser
+as
+	select	u.Id
+			, u.FirstName
+			, u.MiddleName
+			, u.LastName
+			, u.Email
+			, u.Phone
+			, u.Mobile
+
+			, u.DateCreated
+			, u.DateUpdated
+			, cast((case when u.DateEnabled < m.DateEnabled then u.DateEnabled else m.DateEnabled end) as datetime) as 'DateEnabled'
+			, u.DateDeleted
+	from	core_User u
+	join	core_vwMembership m on (m.Id = u.Id)
+;
+
+create view core_vwLogin
+as
+	select	l.Id
+			, l.UserName
+			, l.HashedPassword
+			, l.Salt
 			
---			, m.DateCreated
---			, m.DateUpdated
---			, cast((case when m.DateEnabled < t.DateEnabled then m.DateEnabled else t.DateEnabled end) as datetime) as 'DateEnabled'
---			, m.DateDeleted
---	from	core_Membership m
---	join	core_User u on (m.Id = u.Id)
---	join	core_Tenant t on (m.TenantId = t.Id)
---;
+			, l.DateCreated
+			, l.DateUpdated
+			, cast((case when l.DateEnabled < m.DateEnabled then l.DateEnabled else m.DateEnabled end) as datetime) as 'DateEnabled'
+			, l.DateDeleted
+	from	core_Login l
+	join	core_vwMembership m on (m.Id = l.Id)
+;
 
---create view core_vwUser
---as
---	select	u.Id
---			, u.FirstName
---			, u.MiddleName
---			, u.LastName
---			, u.Email
---			, u.Phone
---			, u.Mobile
-
---			, u.DateCreated
---			, u.DateUpdated
---			, cast((case when u.DateEnabled < m.DateEnabled then u.DateEnabled else m.DateEnabled end) as datetime) as 'DateEnabled'
---			, u.DateDeleted
---	from	core_User u
---	join	core_vwMembership m on (m.Id = u.Id)
---;
-
---create view core_vwLogin
---as
---	select	l.Id
---			, l.UserName
---			, l.HashedPassword
---			, l.Salt
+create view core_vwRole
+as
+	select	r.TenantId
+			, r.Id
+			, r.Name
+			, r.Description
 			
---			, l.DateCreated
---			, l.DateUpdated
---			, cast((case when l.DateEnabled < m.DateEnabled then l.DateEnabled else m.DateEnabled end) as datetime) as 'DateEnabled'
---			, l.DateDeleted
---	from	core_Login l
---	join	core_vwMembership m on (m.Id = l.Id)
---;
+			, r.DateCreated
+			, r.DateUpdated
+			, r.DateEnabled
+			, r.DateDeleted
+	from	core_Role r
+;
 
---create view core_vwRole
---as
---	select	r.TenantId
---			, r.Id
---			, r.Name
---			, r.Description
+create view core_vwRolePermission
+as
+	select	rp.RoleId
+			, p.Id
+			, p.Name
+			, p.Description
 			
---			, r.DateCreated
---			, r.DateUpdated
---			, cast((case when r.DateEnabled < t.DateEnabled then r.DateEnabled else t.DateEnabled end) as datetime) as 'DateEnabled'
---			, r.DateDeleted
---	from	core_Role r
---	join	core_Tenant t on (r.TenantId = t.Id)
---;
+			, rp.DateCreated
+			, p.DateUpdated
+			, cast((
+				case when p.DateEnabled < rp.DateEnabled 
+					then case when p.DateEnabled < r.DateEnabled then p.DateEnabled else r.DateEnabled end 
+					else case when rp.DateEnabled < r.DateEnabled then rp.DateEnabled else r.DateEnabled end
+				end
+			) as datetime) as 'DateEnabled'
+			, p.DateDeleted
+	from	core_vwPermission p
+	join	core_RolePermission rp on (rp.PermissionId = p.Id)
+	join	core_vwRole r on (rp.RoleId = r.Id)
+;
 
---create view core_vwRolePermission
---as
---	select	rp.RoleId
---			, p.Id
---			, p.Name
---			, p.Description
+create view core_vwMembershipRole
+as
+	select	mr.MembershipId
+			, r.TenantId
+			, r.Id			
+			, r.Name
+			, r.Description
+
+			, r.DateCreated
+			, r.DateUpdated
+			, cast((
+				case when r.DateEnabled < mr.DateEnabled
+					then case when r.DateEnabled < m.DateEnabled then r.DateEnabled else m.DateEnabled end
+					else case when mr.DateEnabled < m.DateEnabled then mr.DateEnabled else m.DateEnabled end
+				end
+			) as datetime) as 'DateEnabled'
+			, r.DateDeleted
+	from	core_vwRole r
+	join	core_MembershipRole mr on (mr.RoleId = r.Id)
+	join	core_vwMembership m on (mr.MembershipId = m.Id)
+;
+
+create view core_vwMembershipPermission
+as
+	select	mr.MembershipId
+			, p.AppId
+			, p.Id			
+			, p.Name
+			, p.Description
 			
---			, rp.DateCreated
---			, p.DateUpdated
---			, cast((
---				case when p.DateEnabled < rp.DateEnabled 
---					then case when p.DateEnabled < r.DateEnabled then p.DateEnabled else r.DateEnabled end 
---					else case when rp.DateEnabled < r.DateEnabled then rp.DateEnabled else r.DateEnabled end
---				end
---			) as datetime) as 'DateEnabled'
---			, p.DateDeleted
---	from	core_vwPermission p
---	join	core_RolePermission rp on (rp.PermissionId = p.Id)
---	join	core_vwRole r on (rp.RoleId = r.Id)
---;
-
---create view core_vwMembershipRole
---as
---	select	mr.MembershipId
---			, r.TenantId
---			, r.Id			
---			, r.Name
---			, r.Description
-
---			, r.DateCreated
---			, r.DateUpdated
---			, cast((
---				case when r.DateEnabled < mr.DateEnabled
---					then case when r.DateEnabled < m.DateEnabled then r.DateEnabled else m.DateEnabled end
---					else case when mr.DateEnabled < m.DateEnabled then mr.DateEnabled else m.DateEnabled end
---				end
---			) as datetime) as 'DateEnabled'
---			, r.DateDeleted
---	from	core_vwRole r
---	join	core_MembershipRole mr on (mr.RoleId = r.Id)
---	join	core_vwMembership m on (mr.MembershipId = m.Id)
---;
-
---create view core_vwMembershipPermission
---as
---	select	mr.MembershipId
---			, p.AppId
---			, p.Id			
---			, p.Name
---			, p.Description
-			
---			, p.DateCreated
---			, p.DateUpdated
---			, cast((
---				case when mr.DateEnabled < rp.DateEnabled
---					then case when mr.DateEnabled < p.DateEnabled then mr.DateEnabled else p.DateEnabled end
---					else case when rp.DateEnabled < p.DateEnabled then rp.DateEnabled else p.DateEnabled end
---				end
---			) as datetime) as 'DateEnabled'
---			, p.DateDeleted
---	from	core_vwMembershipRole mr
---	join	core_vwRolePermission rp on (rp.RoleId = mr.Id)
---	join	core_vwPermission p on (rp.Id = p.Id)
---;
+			, p.DateCreated
+			, p.DateUpdated
+			, cast((
+				case when mr.DateEnabled < rp.DateEnabled
+					then case when mr.DateEnabled < p.DateEnabled then mr.DateEnabled else p.DateEnabled end
+					else case when rp.DateEnabled < p.DateEnabled then rp.DateEnabled else p.DateEnabled end
+				end
+			) as datetime) as 'DateEnabled'
+			, p.DateDeleted
+	from	core_vwMembershipRole mr
+	join	core_vwRolePermission rp on (rp.RoleId = mr.Id)
+	join	core_vwPermission p on (rp.Id = p.Id)
+;
 
 
 --	///////////////////////////////
