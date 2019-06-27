@@ -9,3 +9,15 @@
 *.user
 /Cayent/Cayent.Core/obj/Debug/netcoreapp2.2
 /Cayent/Cayent.Core/obj
+/Cayent/Cayent.Web.App/obj
+/Cayent/Cayent.Web.App/bin/Debug/netcoreapp2.2
+/Cayent/Cayent.CQRS/obj
+/Cayent/Cayent.CQRS/bin/Debug/netcoreapp2.2
+/Cayent/Cayent.Domain/obj
+/Cayent/Cayent.Domain/bin/Debug/netcoreapp2.2
+/Cayent/Cayent.Infrastructure/obj
+/Cayent/Cayent.Infrastructure/bin/Debug/netcoreapp2.2
+/Cayent/Cayent.Tests/obj
+/Cayent/Cayent.Tests/bin/Debug/netcoreapp2.2
+/Cayent/Cayent.Web/obj
+/Cayent/Cayent.Web/bin/Debug/netcoreapp2.2
