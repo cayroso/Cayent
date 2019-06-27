@@ -20,8 +20,7 @@ namespace Cayent.Tests
     public class AppCommandHandlerTests
     {
         private static WindsorContainer Container;
-
-        //IDisposable scope;
+        IDisposable scope;
 
         [ClassInitialize]
         public static void TestFixtureSetup(TestContext context)
@@ -57,14 +56,14 @@ namespace Cayent.Tests
             //// register your dependencies
             //Container.Install(FromAssembly.Containing<CayentInstaller>());
 
-            //scope = Container.BeginScope();
+            scope = Container.BeginScope();
         }
 
         [TestCleanup]
         public void Cleanup()
         {
             //Container.Dispose();
-            //scope.Dispose();
+            scope.Dispose();
             
         }
 
@@ -86,8 +85,6 @@ namespace Cayent.Tests
             //  ASSERT
 
             uow.Commit();
-            //uow2.Rollback();
-            //disp.Dispose();
         }
 
         [TestMethod]
@@ -114,8 +111,7 @@ namespace Cayent.Tests
         public void AppDisabled()
         {
             //  ARRANGE
-            var scope = Container.BeginScope();
-            var uow1 = Container.Resolve<IUnitOfWork>();
+            var uow = Container.Resolve<IUnitOfWork>();
             var cmdDispatcher = Container.Resolve<ICommandHandlerDispatcher>();
             var queryDispatcher = Container.Resolve<IQueryHandlerDispatcher>();
 
@@ -124,20 +120,12 @@ namespace Cayent.Tests
 
             var query = new GetAppByIdQuery("AppDisabled", cmd.AppId);
             var dto = queryDispatcher.Handle<GetAppByIdQuery, AppDto>(query);
-
-            uow1.Commit();
-            scope.Dispose();
-
+            
             //  ACT
-            Thread.Sleep(1500);
-            var scope2 = Container.BeginScope();
-            var uow2 = Container.Resolve<IUnitOfWork>();
-
-            var cmdDispatcher2 = Container.Resolve<ICommandHandlerDispatcher>();
-            var queryDispatcher2 = Container.Resolve<IQueryHandlerDispatcher>();
-
+            Thread.Sleep(2000);
+            
             var cmd2 = new DisableAppCommand("AppDisabled", cmd.AppId);
-            cmdDispatcher2.Handle(cmd2);
+            cmdDispatcher.Handle(cmd2);
             
             var query2 = new GetAppByIdQuery("AppDisabled", cmd2.AppId);
             var dto2 = queryDispatcher.Handle<GetAppByIdQuery, AppDto>(query2);
@@ -146,8 +134,7 @@ namespace Cayent.Tests
 
             Assert.IsFalse(dto2.IsEnabled);
 
-            uow2.Commit();
-            scope2.Dispose();
+            uow.Commit();
         }
 
         [TestMethod]

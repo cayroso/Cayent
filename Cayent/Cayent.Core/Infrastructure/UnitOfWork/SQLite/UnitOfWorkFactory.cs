@@ -50,12 +50,17 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
 
 
             //  SQLITE Version
-            var dbConnection = new SQLiteConnection(connectionString);
-            dbConnection.Open();
+            var foo = new SQLiteConnectionStringBuilder(connectionString);
+            foo.DateTimeKind = DateTimeKind.Utc;
+            foo.Version = 3;
+            foo.JournalMode = SQLiteJournalModeEnum.Wal;
 
+            var dbConnection = new SQLiteConnection(foo.ConnectionString);
+            dbConnection.Open();
+            
             //  NOTE: Apply Pragmas in Production
-            var pragmas = "PRAGMA version=3; PRAGMA DateTimeKind=Utc; PRAGMA synchronous=OFF; PRAGMA journal_mode=WAL;";
-            dbConnection.Execute(pragmas);
+            //var pragmas = "PRAGMA version=3; PRAGMA DateTimeKind=Utc; PRAGMA synchronous=OFF; PRAGMA journal_mode=WAL;";
+            //dbConnection.Execute(pragmas);
 
             _dbTransaction = dbConnection.BeginTransaction(IsolationLevel.ReadCommitted);
         }
