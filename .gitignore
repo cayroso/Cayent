@@ -21,3 +21,7 @@
 /Cayent/Cayent.Tests/bin/Debug/netcoreapp2.2
 /Cayent/Cayent.Web/obj
 /Cayent/Cayent.Web/bin/Debug/netcoreapp2.2
+/Cayent/Cayent.Web.Admin.RCL/bin/Debug
+/Cayent/Cayent.Web.Admin.RCL/obj
+/Cayent/Cayent.Web.Admin.RCL/node_modules
+/Cayent/Cayent.Web.Admin.RCL/resources

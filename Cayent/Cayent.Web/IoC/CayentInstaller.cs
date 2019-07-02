@@ -33,10 +33,24 @@ namespace Cayent.Web.IoC
 {
     public sealed class CayentInstaller : IWindsorInstaller
     {
-        private const string NamespacePrefix = "Cayent.";
+        private const string NamespacePrefixes = "Cayent.Core, Cayent.CQRS, Cayent.Domain, Cayent.Infrastructure";
+
+        private List<string> _prefixes;
+        private List<string> _assemblies;
 
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            _prefixes = NamespacePrefixes.Split(",", StringSplitOptions.RemoveEmptyEntries).Select(p => p.Trim()).ToList();
+            //_assemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies()
+            //    .Where(p => _prefixes.Any(pref => p.FullName.StartsWith(pref)))
+            //    .ToList();
+
+            _assemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies()
+                .Where(p => _prefixes.Any(pref => p.FullName.StartsWith(pref)))
+                .Select(p => p.FullName)
+                .OrderBy(p => p)
+                .ToList();
+
             InstallRepositories(container);
             InstallServices(container);
             InstallApiControllers(container);
@@ -85,14 +99,6 @@ namespace Cayent.Web.IoC
                 }
             }
 
-            
-            //var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies()
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(p => p.FullName.StartsWith(NamespacePrefix))
-                .Select(p => p.FullName)
-                .OrderBy(p => p)
-                .ToList();
-
             //var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(p => !p.IsDynamic).Select(p => p.FullName).ToList();
             container.Register(
 
@@ -105,7 +111,7 @@ namespace Cayent.Web.IoC
                         return uow;
                     })
                     .LifestyleTransient()
-                    //.CrossWired()
+                    .CrossWired()
                     ,
                 Component.For<IUnitOfWorkFactory>()
                     .UsingFactoryMethod((k) =>
@@ -119,7 +125,7 @@ namespace Cayent.Web.IoC
                     );
 
             //  register all IRepository<Entity> default implementations
-            assemblies.ForEach(asm =>
+            _assemblies.ForEach(asm =>
             {
                 container.Register(
 
@@ -201,14 +207,8 @@ namespace Cayent.Web.IoC
                     .CrossWired()
                 );
 
-            //var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies()
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(p => !p.IsDynamic && p.FullName.StartsWith(NamespacePrefix))
-                .Select(p => p.FullName)
-                .OrderBy(p => p)
-                .ToList();
 
-            assemblies.ForEach(asm =>
+            _assemblies.ForEach(asm =>
             {
                 container.Register(
                     Classes.FromAssemblyNamed(asm)
@@ -238,13 +238,7 @@ namespace Cayent.Web.IoC
 
         void InstallApiControllers(IWindsorContainer container)
         {
-            var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies()
-                .Where(p => p.FullName.StartsWith(NamespacePrefix))
-                .Select(p => p.FullName)
-                .OrderBy(p => p)
-                .ToList();
-
-            assemblies.ForEach(asm =>
+            _assemblies.ForEach(asm =>
             {
                 container.Register(
                     Classes.FromAssemblyNamed(asm)

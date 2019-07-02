@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cayent.Core\Cayent.Core.csproj" />
+    <ProjectReference Include="..\Cayent.CQRS\Cayent.CQRS.csproj" />
     <ProjectReference Include="..\Cayent.Infrastructure\Cayent.Infrastructure.csproj" />
   </ItemGroup>
 

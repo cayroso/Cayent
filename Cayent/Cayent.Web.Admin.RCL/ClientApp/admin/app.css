@@ -1,0 +1,41 @@
+﻿
+@import '~@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '~@fortawesome/fontawesome-free/css/solid.css';
+
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~startbootstrap-sb-admin-2/css/sb-admin-2.css';
+
+@import '~angular-toastr/dist/angular-toastr.css';
+@import '~angular-ui-bootstrap/dist/ui-bootstrap-csp.css';
+
+/*.patient {
+    color: green;
+}
+.all {
+    color: blue;
+}
+.single{
+    color:gainsboro;
+}*/
+
+.modal.fade.in {
+    opacity: 1;
+}
+
+.modal.in .modal-dialog {
+    transform: translate(0, 0);
+}
+
+.modal-backdrop.in {
+    opacity: 0.5;
+    /* opacity: $modal-backdrop-opacity; (SCSS) */
+}
+
+
+.bg-gradient-primary {
+    background-color: #732c58 !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #264837), to(#0c5b61));
+    /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4e73df), to(#224abe)); */
+    /* background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%); */
+    /*background-size: cover;*/
+}

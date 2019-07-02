@@ -1,0 +1,93 @@
+﻿
+<ul ng-controller="sidebarComponent as $ctrl" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <li>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="~/">
+            <span class="sidebar-brand-icon">
+                <i class="fas fa-user-shield"></i>
+            </span>
+            <span class="sidebar-brand-text mx-3">Admin</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <li>
+        <hr class="sidebar-divider my-0" />
+    </li>
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" asp-page="/Administrator/Index">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link pt-0" asp-page="/Administrator/Jobs/Index">
+            <i class="fas fa-fw fa-tasks"></i>
+            <span>Jobs</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link pt-0" asp-page="/Administrator/Patients/Index">
+            <i class="fas fa-fw fa-2x fa-user-injured"></i>
+            <span>Patients</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link pt-0" asp-page="/Administrator/Caregivers/Index">
+            <i class="fas fa-fw fa-user-md"></i>
+            <span>Caregivers</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link pt-0" asp-page="/Administrator/Deposits/Index">
+            <i class="fas fa-fw fa-credit-card"></i>
+            <span>Deposits</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <li>
+        <hr class="sidebar-divider">
+    </li>
+
+    <!-- Heading -->
+    <li class="sidebar-heading">
+        Settings
+    </li>
+    <li class="nav-item">
+        <a class="nav-link pt-2" asp-page="/Administrator/Quickbooks/Index">
+            <i class="fas fa-fw fa-external-link-alt"></i>
+            <span>QuickBooks Integration</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <li>
+        <hr class="sidebar-divider">
+    </li>
+
+    <!-- Heading -->
+    <li class="sidebar-heading">
+        Security
+    </li>
+    <li class="nav-item">
+        <a class="nav-link pt-2" asp-page="/Administrator/Accounts/Index">
+            <i class="fas fa-fw fa-user-lock"></i>
+            <span>Accounts</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <li>
+        <hr class="sidebar-divider d-none d-md-block">
+    </li>
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <li class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </li>
+
+</ul>

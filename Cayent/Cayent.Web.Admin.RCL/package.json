@@ -1,0 +1,53 @@
+{
+  "name": "clientapp",
+  "version": "1.0.0",
+  "description": "cayent web admin rcl",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cayroso/pca.git"
+  },
+  "keywords": [
+    "pca",
+    "patient",
+    "caregiver"
+  ],
+  "author": "Christopher Angelo G. Ayroso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cayroso/pca/issues"
+  },
+  "homepage": "https://github.com/cayroso/pca#readme",
+  "dependencies": {
+    "@aspnet/signalr": "^1.1.4",
+    "@fortawesome/fontawesome-free": "^5.7.2",
+    "angular": "^1.7.7",
+    "angular-animate": "^1.7.7",
+    "angular-toastr": "^2.1.1",
+    "angular-ui-bootstrap": "^2.5.6",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "jquery.easing": "^1.4.1",
+    "moment": "^2.24.0",
+    "popper.js": "^1.14.7",
+    "startbootstrap-sb-admin-2": "^4.0.3"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.1.0",
+    "extract-loader": "^3.1.0",
+    "file-loader": "^3.0.1",
+    "html-loader": "^0.5.5",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
+  }
+}

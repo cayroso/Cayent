@@ -6,6 +6,9 @@ using Castle.Facilities.AspNetCore;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
+using Cayent.Web.Admin.RCL;
+using Cayent.Web.Admin.RCL.Areas.Admin;
+using Cayent.Web.Admin.RCL.Areas.Admin.ViewComponents;
 using Cayent.Web.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,8 +50,10 @@ namespace Cayent.Web.App
             // Setup component model contributors for making windsor services available to IServiceProvider
             Container.AddFacility<AspNetCoreFacility>(f => f.CrossWiresInto(services));
 
+            services.AddAdminRCL();
+
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddHttpContextAccessor();
             services.AddLogging((lb) => lb.AddConsole().AddDebug());
             //services.AddSingleton<FrameworkMiddleware>(); // Do this if you don't care about using Windsor to inject dependencies
@@ -58,8 +63,14 @@ namespace Cayent.Web.App
 
             // Castle Windsor integration, controllers, tag helpers and view components, this should always come after RegisterApplicationComponents
             var foo = services.AddWindsor(Container,
-                opts => opts.UseEntryAssembly(typeof(Startup).Assembly), // <- Recommended
-                () => services.BuildServiceProvider(validateScopes: false)); // <- Optional
+                opts =>
+                {
+                    //opts.UseEntryAssembly(typeof(Startup).Assembly);
+                    //opts.UseEntryAssembly(typeof(AdminRCLHostingStartup).Assembly);
+                    //opts.UseEntryAssembly(typeof(AdminNavbarViewComponent).Assembly);
+
+                }, // <- Recommended
+                () => services.BuildServiceProvider(new ServiceProviderOptions { ValidateScopes = false })); // <- Optional
 
             return foo;
         }
@@ -92,7 +103,7 @@ namespace Cayent.Web.App
         {
             // Application components
             Container.Register(Component.For<IConfiguration>().Instance(Configuration));
-            
+
             //Container.AddFacility<FactorySupportFacility>();
 
             //  install from cayent

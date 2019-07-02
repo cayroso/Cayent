@@ -32,6 +32,7 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
         {
             return _dbTransaction.Connection;
         }
+
         IDbTransaction IUnitOfWork.GetDbTransaction()
         {
             return _dbTransaction;

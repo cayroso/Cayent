@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.Web", "Cayent.Web\Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.Tests", "Cayent.Tests\Cayent.Tests.csproj", "{61043CE1-B15F-43DB-A06C-56EA408381C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cayent.Web.App", "Cayent.Web.App\Cayent.Web.App.csproj", "{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cayent.Web.App", "Cayent.Web.App\Cayent.Web.App.csproj", "{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cayent.Web.Admin.RCL", "Cayent.Web.Admin.RCL\Cayent.Web.Admin.RCL.csproj", "{879E3CB3-8422-4586-BB32-5121775801F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB05DD74-45D2-4A6C-AC71-C614638D2BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{879E3CB3-8422-4586-BB32-5121775801F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{879E3CB3-8422-4586-BB32-5121775801F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{879E3CB3-8422-4586-BB32-5121775801F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{879E3CB3-8422-4586-BB32-5121775801F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
