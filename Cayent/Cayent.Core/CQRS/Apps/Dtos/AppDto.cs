@@ -6,10 +6,11 @@ using System.Text;
 
 namespace Cayent.Core.CQRS.Apps.Dtos
 {
-    public class AppDto : EntityBaseDto
+    public class AppDto : BaseDto
     {
         public AppDto()
         {
+            AppId = string.Empty;
             Title = string.Empty;
             Description = string.Empty;
             IconClass = string.Empty;
@@ -18,6 +19,7 @@ namespace Cayent.Core.CQRS.Apps.Dtos
             Permissions = new List<PermissionDto>();
         }
 
+        public string AppId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string IconClass { get; set; }
@@ -27,7 +29,7 @@ namespace Cayent.Core.CQRS.Apps.Dtos
 
     }
 
-    public class SearchedAppDto : EntityBaseDto
+    public class SearchedAppDto : BaseDto
     {
         public string Title { get; set; }
         public string Description { get; set; }

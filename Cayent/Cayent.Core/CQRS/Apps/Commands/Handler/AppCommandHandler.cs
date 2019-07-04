@@ -1,8 +1,10 @@
 ﻿using Cayent.Core.CQRS.Apps.Commands.Command;
 using Cayent.Core.Domains.Models.Applications;
 using Cayent.Core.Domains.Models.Applications.Modules;
+using Cayent.Core.Domains.Models.Permissions;
 using Cayent.CQRS.Commands;
 using Cayent.Domain.Repositories;
+using Cayent.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,23 +15,25 @@ namespace Cayent.Core.CQRS.Apps.Commands.Handler
         ICommandHandler<CreateAppCommand>,
         ICommandHandler<EnableAppCommand>,
         ICommandHandler<DisableAppCommand>,
-        ICommandHandler<CreateModuleCommand>//,
-        //ICommandHandler<EnableAppModuleCommand>,
-        //ICommandHandler<DisableAppModuleCommand>,
-        //ICommandHandler<AddAppPermissionCommand>,
-        //ICommandHandler<EnableAppPermissionCommand>,
-        //ICommandHandler<DisableAppPermissionCommand>,
-        //ICommandHandler<RemoveAppPermissionCommand>
+        ICommandHandler<CreateModuleCommand>,
+        ICommandHandler<EnableAppModuleCommand>,
+        ICommandHandler<DisableAppModuleCommand>,
+        ICommandHandler<AddAppPermissionCommand>,
+        ICommandHandler<EnableAppPermissionCommand>,
+        ICommandHandler<DisableAppPermissionCommand>,
+        ICommandHandler<RemoveAppPermissionCommand>
 
 
     {
+        readonly IRepositoryFactory _repositoryFactory;
         readonly IRepository<App> _repoApplication;
         readonly IRepository<Module> _repoModule;
 
-        public AppCommandHandler(IRepository<App> repoApplication, IRepository<Module> repoModule)
+        public AppCommandHandler(IRepositoryFactory repositoryFactory, IRepository<App> repoApplication, IRepository<Module> repoModule)
         {
-            _repoApplication = repoApplication ?? throw new ArgumentNullException("repoApplication");
-            _repoModule = repoModule ?? throw new ArgumentNullException("repoModule");
+            _repositoryFactory = repositoryFactory ?? throw new ArgumentNullException(nameof(repositoryFactory));
+            _repoApplication = repoApplication ?? throw new ArgumentNullException(nameof(repoApplication));
+            _repoModule = repoModule ?? throw new ArgumentNullException(nameof(repoModule));
         }
 
         void ICommandHandler<CreateAppCommand>.Handle(CreateAppCommand command)
@@ -68,58 +72,64 @@ namespace Cayent.Core.CQRS.Apps.Commands.Handler
             _repoModule.Save(domain);
         }
 
-        //void ICommandHandler<AddAppPermissionCommand>.Handle(AddAppPermissionCommand command)
-        //{
-        //    var domain = _repoApplication.Get(command.AppId);
+        void ICommandHandler<AddAppPermissionCommand>.Handle(AddAppPermissionCommand command)
+        {
+            var permRepo = _repositoryFactory.Create<Permission>();
+            var domain = _repoApplication.Get(command.AppId);
 
-        //    domain.AddPermission(command.PermissionId);
+            var perm = new Permission(new PermissionId(command.PermissionId), domain.AppId, command.Name, command.Description);
 
-        //    _repoApplication.Save(domain);
-        //}
+            permRepo.Save(perm);
 
-        //void ICommandHandler<EnableAppPermissionCommand>.Handle(EnableAppPermissionCommand command)
-        //{
-        //    var domain = _repoApplication.Get(command.AppId);
 
-        //    domain.EnablePermission(command.PermissionId);
+            domain.AddPermission(command.PermissionId);
 
-        //    _repoApplication.Save(domain);
-        //}
+            _repoApplication.Save(domain);
+        }
 
-        //void ICommandHandler<DisableAppPermissionCommand>.Handle(DisableAppPermissionCommand command)
-        //{
-        //    var domain = _repoApplication.Get(command.AppId);
+        void ICommandHandler<EnableAppPermissionCommand>.Handle(EnableAppPermissionCommand command)
+        {
+            var domain = _repoApplication.Get(command.AppId);
 
-        //    domain.DisablePermission(command.PermissionId);
+            domain.EnablePermission(command.PermissionId);
 
-        //    _repoApplication.Save(domain);
-        //}
+            _repoApplication.Save(domain);
+        }
 
-        //void ICommandHandler<RemoveAppPermissionCommand>.Handle(RemoveAppPermissionCommand command)
-        //{
-        //    var domain = _repoApplication.Get(command.AppId);
+        void ICommandHandler<DisableAppPermissionCommand>.Handle(DisableAppPermissionCommand command)
+        {
+            var domain = _repoApplication.Get(command.AppId);
 
-        //    domain.RemovePermission(command.PermissionId);
+            domain.DisablePermission(command.PermissionId);
 
-        //    _repoApplication.Save(domain);
-        //}
+            _repoApplication.Save(domain);
+        }
 
-        //void ICommandHandler<EnableAppModuleCommand>.Handle(EnableAppModuleCommand command)
-        //{
-        //    var domain = _repoApplication.Get(command.AppId);
+        void ICommandHandler<RemoveAppPermissionCommand>.Handle(RemoveAppPermissionCommand command)
+        {
+            var domain = _repoApplication.Get(command.AppId);
 
-        //    domain.EnableModule(command.ModuleId);
+            domain.RemovePermission(command.PermissionId);
 
-        //    _repoApplication.Save(domain);
-        //}
+            _repoApplication.Save(domain);
+        }
 
-        //void ICommandHandler<DisableAppModuleCommand>.Handle(DisableAppModuleCommand command)
-        //{
-        //    var domain = _repoApplication.Get(command.AppId);
+        void ICommandHandler<EnableAppModuleCommand>.Handle(EnableAppModuleCommand command)
+        {
+            var domain = _repoApplication.Get(command.AppId);
 
-        //    domain.DisableModule(command.ModuleId);
+            domain.EnableModule(command.ModuleId);
 
-        //    _repoApplication.Save(domain);
-        //}
+            _repoApplication.Save(domain);
+        }
+
+        void ICommandHandler<DisableAppModuleCommand>.Handle(DisableAppModuleCommand command)
+        {
+            var domain = _repoApplication.Get(command.AppId);
+
+            domain.DisableModule(command.ModuleId);
+
+            _repoApplication.Save(domain);
+        }
     }
 }

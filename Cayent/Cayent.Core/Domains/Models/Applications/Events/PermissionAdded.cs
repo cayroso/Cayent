@@ -16,5 +16,8 @@ namespace Cayent.Core.Domains.Models.Applications.Events
 
         public AppId AppId { get; private set; }
         public PermissionId PermissionId { get; private set; }
+
+        public string Name { get; }
+        public string Description { get; }
     }
 }
