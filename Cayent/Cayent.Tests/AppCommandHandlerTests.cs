@@ -88,26 +88,6 @@ namespace Cayent.Tests
         }
 
         [TestMethod]
-        public void ModuleCreated()
-        {
-            //  ARRANGE
-            var uow = Container.Resolve<IUnitOfWork>();
-            var cmdDispatcher = Container.Resolve<ICommandHandlerDispatcher>();
-            
-            var cmd = new CreateAppCommand("CreateModule", "CreateModule", "x", "x", "x", "x", 1);
-            var cmd2 = new CreateModuleCommand("CreateModule", cmd.AppId, "CreateModule", "CreateModule", "CreateModule", "CreateModule", "CreateModule", 1);
-            
-            //  ACT
-            cmdDispatcher.Handle(cmd);
-            cmdDispatcher.Handle(cmd2);
-
-
-            //  ASSERT
-            uow.Commit();
-        }
-
-
-        [TestMethod]
         public void AppDisabled()
         {
             //  ARRANGE
@@ -131,7 +111,7 @@ namespace Cayent.Tests
             var dto2 = queryDispatcher.Handle<GetAppByIdQuery, AppDto>(query2);
 
             //  ASSERT
-
+            Assert.IsTrue(dto.IsEnabled);
             Assert.IsFalse(dto2.IsEnabled);
 
             uow.Commit();
@@ -140,43 +120,94 @@ namespace Cayent.Tests
         [TestMethod]
         public void AppEnabled()
         {
+            //  ARRANGE
+            var uow = Container.Resolve<IUnitOfWork>();
+            var cmdDispatcher = Container.Resolve<ICommandHandlerDispatcher>();
+            var queryDispatcher = Container.Resolve<IQueryHandlerDispatcher>();
 
+            var cmd = new CreateAppCommand("EnableAppCommand", "AppEnabled", "AppEnabled", "x", "x", "x", 1);
+            cmdDispatcher.Handle(cmd);
+
+            var query = new GetAppByIdQuery("EnableAppCommand", cmd.AppId);
+            var dto = queryDispatcher.Handle<GetAppByIdQuery, AppDto>(query);
+
+            //  ACT
+            Thread.Sleep(200);
+
+            var cmd2 = new DisableAppCommand("EnableAppCommand", cmd.AppId);
+            cmdDispatcher.Handle(cmd2);
+
+            Thread.Sleep(200);
+
+            var cmd3 = new EnableAppCommand("EnableAppCommand", cmd.AppId);
+            cmdDispatcher.Handle(cmd3);
+            
+            //  ASSERT
+            var query2 = new GetAppByIdQuery("EnableAppCommand", cmd2.AppId);
+            var dto2 = queryDispatcher.Handle<GetAppByIdQuery, AppDto>(query2);
+
+            Assert.IsTrue(dto.IsEnabled);
+
+            uow.Commit();
         }
+
+
+        [TestMethod]
+        public void ModuleCreated()
+        {
+            //  ARRANGE
+            var uow = Container.Resolve<IUnitOfWork>();
+            var cmdDispatcher = Container.Resolve<ICommandHandlerDispatcher>();
+
+            var cmd = new CreateAppCommand("CreateModule", "CreateModule", "x", "x", "x", "x", 1);
+            var cmd2 = new CreateModuleCommand("CreateModule", cmd.AppId, "CreateModule", "CreateModule", "CreateModule", "CreateModule", "CreateModule", 1);
+
+            //  ACT
+            cmdDispatcher.Handle(cmd);
+            cmdDispatcher.Handle(cmd2);
+
+
+            //  ASSERT
+            uow.Commit();
+        }
+
+
 
         [TestMethod]
         public void ModuleDisabled()
         {
-
+            throw new NotImplementedException();
         }
 
         [TestMethod]
         public void ModuleEnabled()
         {
+            throw new NotImplementedException();
 
         }
 
         [TestMethod]
         public void PermissionAdded()
         {
-
+            throw new NotImplementedException();
         }
 
         [TestMethod]
         public void PermissionDisabled()
         {
-
+            throw new NotImplementedException();
         }
 
         [TestMethod]
         public void PermissionEnabled()
         {
-
+            throw new NotImplementedException();
         }
 
         [TestMethod]
         public void PermissionRemoved()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

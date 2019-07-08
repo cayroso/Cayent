@@ -21,14 +21,5 @@ namespace Cayent.Core.CQRS.BaseClasses
             DateDeleted = DateTime.MaxValue;
         }
     }
-
-    public abstract class EntityBaseDto : BaseDto
-    {
-        public string Id { get; set; }
-
-        public EntityBaseDto()
-        {
-            Id = string.Empty;
-        }
-    }
+    
 }

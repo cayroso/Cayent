@@ -51,8 +51,9 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
 
             //  SQLITE Version
             var foo = new SQLiteConnectionStringBuilder(connectionString);
-            foo.DateTimeKind = DateTimeKind.Utc;
             foo.Version = 3;
+            foo.DateTimeKind = DateTimeKind.Utc;
+            foo.SyncMode = SynchronizationModes.Off;
             foo.JournalMode = SQLiteJournalModeEnum.Wal;
 
             var dbConnection = new SQLiteConnection(foo.ConnectionString);

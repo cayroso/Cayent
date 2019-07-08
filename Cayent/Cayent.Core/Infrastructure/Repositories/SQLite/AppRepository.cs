@@ -22,16 +22,16 @@ namespace Cayent.Core.Infrastructure.Repositories.SQLite
         public override App Get(string id)
         {
             const string sql = @"
-select  a.Id, a.Title, a.Description, a.IconClass, a.Url, a.Sequence
+select  a.AppId, a.Title, a.Description, a.IconClass, a.Url, a.Sequence
         , a.DateCreated, a.DateUpdated, a.DateEnabled, a.DateDeleted
 from    core_App a
-where   a.Id = @Id
+where   a.AppId = @Id
 ;
-select  p.Id
+select  p.PermissionId
 from    core_vwPermission p
 where   p.AppId = @Id
 ;
-select  m.Id
+select  m.ModuleId
 from    core_Module m
 where   m.AppId = @Id
 ;
@@ -74,6 +74,7 @@ where   m.AppId = @Id
                     case AppDisabled evt:
                         HandleEvent(evt);
                         break;
+
                     case PermissionAdded evt:
                         HandleEvent(evt);
                         break;
@@ -107,7 +108,7 @@ where   m.AppId = @Id
         void HandleEvent(AppCreated evt)
         {
             const string sql = @"
-insert into core_App(Id, Title, Description, IconClass, Url, Sequence, DateCreated, DateUpdated, DateEnabled, DateDeleted)
+insert into core_App(AppId, Title, Description, IconClass, Url, Sequence, DateCreated, DateUpdated, DateEnabled, DateDeleted)
     values  (@Id, @Title, @Description, @IconClass, @Url, @Sequence, @DateCreated, @DateUpdated, @DateEnabled, @DateDeleted)
 ;
 ";
@@ -132,12 +133,12 @@ insert into core_App(Id, Title, Description, IconClass, Url, Sequence, DateCreat
             const string sql = @"
 update  core_App
 set     DateEnabled = @DateEnabled
-where   Id = @Id
+where   AppId = @Id
 ;
 ";
             DbConnection.Execute(sql, new
             {
-                Id = evt.AppId.Id,
+                evt.AppId.Id,
                 DateEnabled = DateTime.MaxValue
             }, DbTransaction);
 
@@ -148,12 +149,12 @@ where   Id = @Id
             const string sql = @"
 update  core_App
 set     DateEnabled = @DateEnabled
-where   Id = @Id
+where   AppId = @Id
 ;
 ";
             DbConnection.Execute(sql, new
             {
-                Id = evt.AppId.Id,
+                evt.AppId.Id,
                 DateEnabled = evt.OccurredAt
             }, DbTransaction);
 
@@ -162,14 +163,16 @@ where   Id = @Id
         void HandleEvent(PermissionAdded evt)
         {
             const string sql = @"
-insert into core_Permission(AppId, PermissionId, DateCreated, DateEnabled)
-    values  (@AppId, @PermissionId, @DateCreated, @DateEnabled)
+insert into core_Permission(AppId, PermissionId, Name, Description, DateCreated, DateEnabled)
+    values  (@AppId, @PermissionId, @Name, @Description, @DateCreated, @DateEnabled)
 ;
 ";
             DbConnection.Execute(sql, new
             {
-                AppId = evt.AppId.Id,
+                AppId = evt.AppId.Id,                
                 PermissionId = evt.PermissionId.Id,
+                evt.Name,
+                evt.Description,
                 DateCreated = evt.OccurredAt,
                 DateEnabled = DateTime.MaxValue
             }, DbTransaction);
@@ -181,7 +184,7 @@ insert into core_Permission(AppId, PermissionId, DateCreated, DateEnabled)
             const string sql = @"
 update  core_Permission
 set     DateEnabled = @DateEnabled
-where   Id = @Id
+where   PermissionId = @Id
 ;
 ";
             DbConnection.Execute(sql, new
@@ -197,7 +200,7 @@ where   Id = @Id
             const string sql = @"
 update  core_Permission
 set     DateEnabled = @DateEnabled
-where   Id = @Id
+where   PermissionId = @Id
 ;
 ";
             DbConnection.Execute(sql, new
@@ -228,12 +231,12 @@ where   Id = @Id
             const string sql = @"
 update  core_Module
 set     DateEnabled = @DateEnabled
-where   Id = @Id
+where   ModuleId = @Id
 ;
 ";
             DbConnection.Execute(sql, new
             {
-                Id = evt.ModuleId.Id,
+                evt.ModuleId.Id,
                 DateEnabled = DateTime.MaxValue
             }, DbTransaction);
         }
@@ -243,12 +246,12 @@ where   Id = @Id
             const string sql = @"
 update  core_Module
 set     DateEnabled = @DateEnabled
-where   Id = @Id
+where   ModuleId = @Id
 ;
 ";
             DbConnection.Execute(sql, new
             {
-                Id = evt.ModuleId.Id,
+                evt.ModuleId.Id,
                 DateEnabled = evt.OccurredAt
             }, DbTransaction);
         }

@@ -31,21 +31,21 @@ namespace Cayent.Core.CQRS.Apps.Queries.Handler
         AppDto IQueryHandler<GetAppByIdQuery, AppDto>.Handle(GetAppByIdQuery query)
         {
             const string sql = @"
-select  a.Id, a.Title, a.Description, a.IconClass, a.Url, a.Sequence
+select  a.AppId, a.Title, a.Description, a.IconClass, a.Url, a.Sequence
         , a.DateCreated, a.DateUpdated, a.DateEnabled, a.DateDeleted
 from    core_App a
-where   a.Id = @Id
+where   a.AppId = @Id
 order by a.Sequence asc
 ;
 
-select  m.AppId, m.Id, m.Title, m.Description, m.IconClass, m.Url, m.Sequence
+select  m.AppId, m.ModuleId, m.Title, m.Description, m.IconClass, m.Url, m.Sequence
         , m.DateCreated, m.DateUpdated, m.DateEnabled, m.DateDeleted
 from    core_vwModule m
 where   m.AppId = @Id
 order by m.Sequence asc
 
 ;
-select  p.AppId, p.Id, p.Name, p.Description, p.DateCreated, p.DateUpdated, p.DateEnabled, p.DateDeleted
+select  p.AppId, p.PermissionId, p.Name, p.Description, p.DateCreated, p.DateUpdated, p.DateEnabled, p.DateDeleted
 from    core_vwPermission p
 where   p.AppId = @Id
 ;
