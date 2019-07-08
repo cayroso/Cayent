@@ -13,7 +13,9 @@ namespace Cayent.CQRS.Queries
         /// <typeparam name="TResult">object</typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        TResult Handle<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>;
+        TResult Handle<TQuery, TResult>(TQuery query)
+            where TQuery : IQuery<TResult>
+            where TResult: IResponse;
     }
 
     public sealed class QueryHandlerDispatcher : IQueryHandlerDispatcher
@@ -25,7 +27,9 @@ namespace Cayent.CQRS.Queries
             _factory = factory;
         }
 
-        public TResult Handle<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>
+        public TResult Handle<TQuery, TResult>(TQuery query)
+            where TQuery : IQuery<TResult>
+            where TResult: IResponse
         {
             var handler = _factory.Create<TQuery, TResult>();
 

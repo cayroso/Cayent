@@ -1,6 +1,13 @@
-﻿@page
+﻿@page "{handler?}"
 @model Cayent.Web.Admin.RCL.Areas.Admin.Pages.Users.IndexModel
 @{
 }
 
-Edit Users Here
+<users-component>
+    <div class="text-center">
+        <div class="p-3">
+            Loading, please wait...
+        </div>
+        <spam class="spinner-border text-primary"></spam>
+    </div>
+</users-component>

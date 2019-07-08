@@ -1,0 +1,55 @@
+﻿
+
+<div ng-cloak class="">
+    <div class="card shadow border-left-info mb-3">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">&nbsp;Users</h6>
+
+            <common-pager page="$ctrl.data.page" page-count="$ctrl.data.pageCount"
+                          move-first="$ctrl.first()"
+                          move-prev="$ctrl.previous()"
+                          move-next="$ctrl.next()"
+                          move-last="$ctrl.last()">
+            </common-pager>
+
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>App Name</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Enabled</th>
+                        <th>Deleted</th>
+                        <th>Date Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in $ctrl.data.items">
+                        <td>{{($index+1) + (($ctrl.data.page-1) * $ctrl.data.pageSize) }}</td>
+                        <td>{{item.appTitle}}</td>
+                        <td>
+                            <a ng-href="/administrator/accounts/caregiver/{{item.accountId}}">
+                                {{item.name}}
+                            </a>
+                        </td>
+
+                        <td>{{item.description}}</td>
+
+                        <td>{{item.isEnabled}}</td>
+                        <td>{{item.isDeleted}}</td>
+                        <td>{{item.dateCreated|date:'medium'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="card-footer">
+            footer
+        </div>
+    </div>
+</div>

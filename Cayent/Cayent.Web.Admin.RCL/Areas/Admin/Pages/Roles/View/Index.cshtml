@@ -1,0 +1,13 @@
+﻿@page "{id}/{handler?}"
+@model Cayent.Web.Admin.RCL.Areas.Admin.Pages.Roles.View.IndexModel
+@{
+}
+
+<roles-view-component data-role-id="'@Model.Id'" class="container">
+    <div class="text-center">
+        <div class="p-3">
+            Loading, please wait...
+        </div>
+        <spam class="spinner-border text-primary"></spam>
+    </div>
+</roles-view-component>

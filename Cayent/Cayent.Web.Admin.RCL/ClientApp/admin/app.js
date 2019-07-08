@@ -3,32 +3,30 @@ import angular from 'angular';
 import * as signalR from '@aspnet/signalr';
 
 import '../common/index';
-import { debug } from 'util';
 
 const app = angular.module('app', ['common', 'ngAnimate', 'toastr', 'ui.bootstrap']);
 
-
 function controller($rootScope, $scope, $http, $uibModal, errHandlerSvc, toastr) {
+    
     const vm = this;
-
     vm.$onInit = function () {
-        vm.notificationHub = new signalR.HubConnectionBuilder()
-            .withUrl('/notificationHub')
-            .build();
+        //vm.notificationHub = new signalR.HubConnectionBuilder()
+        //    .withUrl('/notificationHub')
+        //    .build();
 
-        var start = vm.notificationHub.start();
+        //var start = vm.notificationHub.start();
 
-        start.then(function () {
-            //toastr.success('Connected to Notification Hub');
+        //start.then(function () {
+        //    //toastr.success('Connected to Notification Hub');
 
-            vm.notificationHub.on('receive', function (notification) {
-                toastr.info(notification.content, notification.subject);
-            });
-        });
+        //    vm.notificationHub.on('receive', function (notification) {
+        //        toastr.info(notification.content, notification.subject);
+        //    });
+        //});
 
-        start.catch(function (err) {
-            toastr.error(JSON.stringify(err));
-        });
+        //start.catch(function (err) {
+        //    toastr.error(JSON.stringify(err));
+        //});
 
 
     };
@@ -68,9 +66,8 @@ app.controller('navbarComponent',
             var vm = this;
 
             vm.data = null;
-
             vm.$onInit = function () {
-                $http.get(`api/administrator/navbar`)
+                $http.get(`admin-module/api/admin/navbar`)
                     .then((resp) => {
                         vm.data = resp.data;
                     }, errHandlerSvc.handle);
@@ -200,7 +197,7 @@ app.controller('sidebarComponent',
             var vm = this;
 
             vm.$onInit = function () {
-                $http.get(`api/administrator/sidebar`)
+                $http.get(`admin-module/api/admin/sidebar`)
                     .then((resp) => {
                         vm.data = resp.data;
                     }, errHandlerSvc.handle);

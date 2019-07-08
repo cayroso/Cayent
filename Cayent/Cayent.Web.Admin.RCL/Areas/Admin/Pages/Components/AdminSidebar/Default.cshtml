@@ -18,36 +18,30 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" asp-page="/Administrator/Index">
+        <a class="nav-link" asp-area="admin" asp-page="/Index">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link pt-0" asp-page="/Administrator/Jobs/Index">
+        <a class="nav-link pt-0" asp-area="admin" asp-page="/Users/Index">
             <i class="fas fa-fw fa-tasks"></i>
-            <span>Jobs</span>
+            <span>Users</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link pt-0" asp-page="/Administrator/Patients/Index">
+        <a class="nav-link pt-0" asp-area="admin" asp-page="/Roles/Index">
             <i class="fas fa-fw fa-2x fa-user-injured"></i>
-            <span>Patients</span>
+            <span>Roles</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link pt-0" asp-page="/Administrator/Caregivers/Index">
+        <a class="nav-link pt-0" asp-area="admin" asp-page="/Permissions/Index">
             <i class="fas fa-fw fa-user-md"></i>
-            <span>Caregivers</span>
+            <span>Permissions</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link pt-0" asp-page="/Administrator/Deposits/Index">
-            <i class="fas fa-fw fa-credit-card"></i>
-            <span>Deposits</span>
-        </a>
-    </li>
-
+    
     <!-- Divider -->
     <li>
         <hr class="sidebar-divider">

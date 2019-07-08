@@ -1,12 +1,13 @@
 ﻿using Cayent.Core.CQRS.BaseClasses;
 using Cayent.Core.CQRS.Permissions.Dtos;
+using Cayent.CQRS.Queries;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Cayent.Core.CQRS.Apps.Dtos
 {
-    public class AppDto : EntityBaseDto
+    public class AppDto : EntityBaseDto, IResponse
     {
         public AppDto()
         {
@@ -27,7 +28,7 @@ namespace Cayent.Core.CQRS.Apps.Dtos
 
     }
 
-    public class SearchedAppDto : EntityBaseDto
+    public class SearchedAppDto : EntityBaseDto, IResponse
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -38,7 +39,7 @@ namespace Cayent.Core.CQRS.Apps.Dtos
         public int Modules { get; set; }
     }
 
-    public class PaginatedSearchedAppDto : Paginated<SearchedAppDto>
+    public class PaginatedSearchedAppDto : Paginated<SearchedAppDto>, IResponse
     {
         public PaginatedSearchedAppDto(List<SearchedAppDto> list, int page, int pageSize, int itemCount)
             : base(list, page, pageSize, itemCount)

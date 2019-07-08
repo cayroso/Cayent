@@ -4,7 +4,12 @@ using System.Text;
 
 namespace Cayent.CQRS.Queries
 {
-    public interface IQuery<out TResponse>
+    public interface IResponse
+    {
+
+    }
+
+    public interface IQuery<out TResponse> where TResponse: IResponse
     {
         /// <summary>
         /// Business transaction id
@@ -12,7 +17,7 @@ namespace Cayent.CQRS.Queries
         string CorrelationId { get; set; }
     }
 
-    public abstract class Query<TResponse> : IQuery<TResponse>
+    public abstract class Query<TResponse> : IQuery<TResponse> where TResponse: IResponse
     {
         public Query(string correlationId)
         {

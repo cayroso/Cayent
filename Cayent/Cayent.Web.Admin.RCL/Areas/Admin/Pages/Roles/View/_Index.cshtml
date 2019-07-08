@@ -1,0 +1,141 @@
+﻿
+<div ng-cloak class="container">
+    <div class="card shadow border-left-info mb-3">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">&nbsp;Role Information</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="form-group">
+                <b>Title</b>
+                <div>{{$ctrl.item.title}}</div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <b>Description</b>
+                    <div>{{$ctrl.item.description}}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <b>Price</b>
+                    <div>{{$ctrl.item.totalPrice|number:'2'}}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <b>Hours</b>
+                    <div>{{$ctrl.item.totalHours|number:'2'}}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <b>Status</b>
+                    <div>{{$ctrl.item.jobStatusText}}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <b>Caregiver</b>
+                    <span>{{$ctrl.item.caregiver.user.firstLastName}}</span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="card shadow border-left-info mb-3">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">&nbsp;Deposits</h6>
+
+        </div>
+
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Quickbooks AuthCode</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="deposit in $ctrl.item.deposits">
+                        <td>{{$index+1}}</td>
+                        <td>{{deposit.qbCreditCharge.qbChargeResponse.authCode}}</td>
+                        <td>{{deposit.amount|number:'2'}}</td>
+                        <td>{{deposit.dateCreated|date:'short'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="card-footer">
+                When this job application is paid, caregivers can apply to work for this job.
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card shadow border-left-info mb-3">
+        <div class="card-header  py-3">
+            <h6 class="m-0 font-weight-bold text-primary">&nbsp;Caregiver Applications</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Caregiver</th>
+                        <th>Accepted</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="ja in $ctrl.item.applicants">
+                        <td>{{ja.account.user.firstLastName}}</td>
+                        <td>{{ja.jobApplicantStatusText}}</td>
+                        <td>{{ja.reason}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            When this job application is paid, caregivers can apply to work for this job.
+        </div>
+
+    </div>
+
+    <div class="card shadow border-left-info">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">&nbsp;Schedules</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="sched in $ctrl.item.schedules">
+                        <th>{{$index+1}}</th>
+                        <td>{{sched.dateStart|date:'MM/dd/yyyy hh:mm a'}}</td>
+                        <td>{{sched.dateEnd|date:'MM/dd/yyyy hh:mm a'}}</td>
+                        <td>{{sched.hours|number:'2'}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card-footer">
+            Job schedule is for caregiver to help them manage their time. The total hours and schedule(s) are not related.
+            <p>You can modify the schedules as long as the job isn't in progress</p>
+        </div>
+    </div>
+
+
+</div>

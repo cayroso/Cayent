@@ -101,8 +101,8 @@ app.component('commonPager', {
         
     },
     bindings: {
-        pageIndex: '<',
-        totalPages: '<',
+        page: '<',
+        pageCount: '<',
         moveFirst: '&',
         movePrev: '&',
         moveNext: '&',
@@ -119,7 +119,7 @@ app.component('commonPager', {
                     <button ng-click="$ctrl.movePrev()" class="page-link">&lsaquo;</button>
                 </li>
                 <li class="page-item">
-                    <button class="page-link">{{$ctrl.pageIndex}}/{{$ctrl.totalPages}}</button>
+                    <button class="page-link">{{$ctrl.page}}/{{$ctrl.pageCount}}</button>
                 </li>
                 <li class="page-item">
                     <button ng-click="$ctrl.moveNext()" class="page-link">&rsaquo;</button>
