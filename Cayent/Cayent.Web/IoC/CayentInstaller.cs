@@ -102,27 +102,34 @@ namespace Cayent.Web.IoC
             //var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(p => !p.IsDynamic).Select(p => p.FullName).ToList();
             container.Register(
 
-                Component.For<IUnitOfWork>()
-                    .UsingFactoryMethod((k) =>
-                    {
-                        var fac = k.Resolve<IUnitOfWorkFactory>();
-                        var uow = fac.Create();
+                //Component.For<IUnitOfWork>()
+                //    .UsingFactoryMethod((k) =>
+                //    {
+                //        var fac = k.Resolve<IUnitOfWorkFactory>();
+                //        var uow = fac.Create();
 
-                        return uow;
-                    })
-                    .LifestyleTransient()
-                    .CrossWired()
-                    ,
+                //        return uow;
+                //    })
+                //    .LifestyleTransient()
+                //    .CrossWired()
+                //    ,
                 Component.For<IUnitOfWorkFactory>()
                     .UsingFactoryMethod((k) =>
                     {
-                        var subContainer = k.Resolve<IContainer>();
-                        var fac = new UnitOfWorkFactory(subContainer, connectionString);
+                        var repositoryFactory = k.Resolve<IRepositoryFactory>();
+                        var fac = new UnitOfWorkFactory(repositoryFactory, connectionString);
 
                         return fac;
                     })
                     .LifestyleScoped()
+                    .CrossWired()
+                    ,
+                Component.For<IDbContext>()
+                    .ImplementedBy<DefaultDbContext>()
+                    .LifestyleScoped()
+                    .CrossWired()
                     );
+            //container.Resolve<IRepository>(new List<KeyValuePair<string, object>>());
 
             //  register all IRepository<Entity> default implementations
             _assemblies.ForEach(asm =>
@@ -139,6 +146,7 @@ namespace Cayent.Web.IoC
 
                     );
             });
+            
         }
 
         void InstallServices(IWindsorContainer container)
@@ -262,6 +270,13 @@ namespace Cayent.Web.IoC
         T IContainer.Resolve<T>()
         {
             var item = _windsorContainer.Resolve<T>();
+
+            return item;
+        }
+
+        T IContainer.Resolve<T>(IEnumerable<KeyValuePair<string, object>> arguments)
+        {
+            var item = _windsorContainer.Resolve<T>(arguments);
 
             return item;
         }

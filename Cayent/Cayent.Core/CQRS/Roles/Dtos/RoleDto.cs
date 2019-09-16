@@ -8,7 +8,7 @@ using System.Text;
 namespace Cayent.Core.CQRS.Roles.Dtos
 {
 
-    public class RoleDto : EntityBaseDto, IResponse
+    public class RoleDto : BaseDto, IResponse
     {
         public string Name { get; set; }
         public string Description { get; set; }

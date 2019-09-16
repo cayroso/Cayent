@@ -42,7 +42,7 @@ namespace Cayent.Domain.Models.Entities
         //(this as dynamic).When(e);
         //   ((dynamic)this).When((dynamic)e);
         //}
-        protected abstract void When(IDomainEvent e);
+        protected abstract void When<T>(T e) where T: class, IDomainEvent;
 
         protected void Apply(IDomainEvent e)
         {

@@ -10,13 +10,13 @@ namespace Cayent.Infrastructure.Repositories
 {
     public abstract class BaseRepository<T> : IRepository<T> where T : Entity
     {
-        public BaseRepository(IUnitOfWork unitOfWork)
+        public BaseRepository(IUnitOfWorkFactory unitOfWorkFactory)
         {
-            _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-
+            //_unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+            _unitOfWork = unitOfWorkFactory.Create();
         }
         private readonly string RepositoryId = Guid.NewGuid().ToString();
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         protected IDbConnection DbConnection => _unitOfWork.GetDbConnection();
         protected IDbTransaction DbTransaction => _unitOfWork.GetDbTransaction();

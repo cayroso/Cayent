@@ -13,11 +13,15 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
     public sealed class UnitOfWorkFactory : IDisposable, IUnitOfWorkFactory
     {
         private readonly IRepositoryFactory _repositoryFactory;
-        private readonly IDbTransaction _dbTransaction;
 
-        public UnitOfWorkFactory(IContainer container, string connectionString)
+        //[ThreadStatic]
+        private SQLiteTransaction _dbTransaction;
+        //[ThreadStatic]
+        //private readonly IDbConnection _dbConnection;
+
+        public UnitOfWorkFactory(IRepositoryFactory  repositoryFactory, string connectionString)
         {
-            _repositoryFactory = container.Resolve<IRepositoryFactory>();
+            _repositoryFactory = repositoryFactory;
 
             //_container = container ?? throw new ArgumentNullException(nameof(container));
             //_connectionString = connectionString;
@@ -56,21 +60,23 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
             foo.SyncMode = SynchronizationModes.Off;
             foo.JournalMode = SQLiteJournalModeEnum.Wal;
 
-            var dbConnection = new SQLiteConnection(foo.ConnectionString);
-            dbConnection.Open();
+            var _dbConnection = new SQLiteConnection(foo.ConnectionString);
+            _dbConnection.Open();
             
             //  NOTE: Apply Pragmas in Production
             //var pragmas = "PRAGMA version=3; PRAGMA DateTimeKind=Utc; PRAGMA synchronous=OFF; PRAGMA journal_mode=WAL;";
             //dbConnection.Execute(pragmas);
-
-            _dbTransaction = dbConnection.BeginTransaction(IsolationLevel.ReadCommitted);
+            
+            _dbTransaction = _dbConnection.BeginTransaction(IsolationLevel.ReadCommitted);
         }
 
+        //public static List<UnitOfWork> uows = new List<UnitOfWork>();
 
         IUnitOfWork IUnitOfWorkFactory.Create()
         {
-            var uow = new UnitOfWork(_repositoryFactory, _dbTransaction);
+            var uow = new UnitOfWork(_dbTransaction);
 
+            //]uows.Add(uow);
             return uow;
         }
 

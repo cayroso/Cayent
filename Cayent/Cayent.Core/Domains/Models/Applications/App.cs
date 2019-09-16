@@ -192,9 +192,13 @@ namespace Cayent.Core.Domains.Models.Applications
             yield return AppId;
         }
 
-        protected override void When(IDomainEvent e)
+        protected override void When<T>(T e)
         {
             When(e as dynamic);
         }
+        //protected override void When<T>(T e) where T: class, IDomainEvent
+        //{
+        //    When(e as dynamic);
+        //}
     }
 }

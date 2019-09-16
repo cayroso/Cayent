@@ -1,6 +1,7 @@
 ﻿using Cayent.CQRS.Services;
 using Cayent.Domain.Models.Entities;
 using Cayent.Domain.Repositories;
+using Cayent.Infrastructure.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +24,9 @@ namespace Cayent.Infrastructure.Repositories
 
         IRepository<TEntity> IRepositoryFactory.Create<TEntity>()
         {
-            var handler = _container.Resolve<IRepository<TEntity>>();
+            var uowf = _container.Resolve<IUnitOfWorkFactory>();
+
+            var handler = _container.Resolve<IRepository<TEntity>>(new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("unitOfWorkFactory", uowf) });
 
             return handler;
         }

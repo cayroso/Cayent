@@ -14,7 +14,7 @@ namespace Cayent.Core.CQRS.Permissions.Queries.Handler
     public sealed class PermissionQueryHandler : BaseQueryHandler,
         IQueryHandler<SearchPermissionsQuery, PaginatedSearchedPermissionDto>
     {
-        public PermissionQueryHandler(IUnitOfWork unitOfWork)
+        public PermissionQueryHandler(IUnitOfWorkFactory unitOfWork)
             : base(unitOfWork)
         {
 
@@ -53,7 +53,7 @@ create temporary table if not exists ItemsFiltered as
 select  count(1)
 from    ItemsFound
 ;
-select  p.PermissionId as 'Id', p.Name, p.Description
+select  p.PermissionId, p.Name, p.Description
         , p.DateCreated, p.DateUpdated, p.DateEnabled, p.DateDeleted
 
         , app.Title as 'AppTitle'

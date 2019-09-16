@@ -61,10 +61,13 @@ namespace Cayent.Core.Domains.Models.Permissions
         {
             yield return PermissionId;
         }
-
-        protected override void When(IDomainEvent e)
+        protected override void When<T>(T e)
         {
             When(e as dynamic);
         }
+        //protected override void When(IDomainEvent e)
+        //{
+        //    When(e as dynamic);
+        //}
     }
 }

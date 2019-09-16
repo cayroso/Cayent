@@ -22,7 +22,6 @@ namespace Cayent.Core.Domains.Models.Notifications
     {
         public NotificationId NotificationId { get; private set; }
         public int NotificationType { get; private set; }
-        public string IconClass { get; private set; }
         public string Subject { get; private set; }
         public string Content { get; private set; }
         public string ReferenceId { get; private set; }
@@ -36,27 +35,25 @@ namespace Cayent.Core.Domains.Models.Notifications
 
             NotificationId = new NotificationId(data.Id);
             NotificationType = data.NotificationType;
-            IconClass = data.IconClass;
             Subject = data.Subject;
             Content = data.Content;
             ReferenceId = data.ReferenceId;
             DateSent = data.DateSent;
+
+            Receivers = data.Receivers.Select(p => new NotificationReceiver(p)).ToList();
         }
 
-        public Notification(NotificationId notificationId, int notificationType, string iconClass, string subject, string content,
-            string referenceId, DateTime dateSent)
-            : this(notificationId, notificationType, iconClass, subject, content, referenceId, dateSent,
+        public Notification(NotificationId notificationId, int notificationType, string subject, string content, string referenceId, DateTime dateSent)
+            : this(notificationId, notificationType, subject, content, referenceId, dateSent,
                   DateTime.UtcNow, DateTime.UtcNow, DateTime.MaxValue, DateTime.MaxValue)
         {
-
         }
 
-        public Notification(NotificationId notificationId, int notificationType, string iconClass, string subject, string content,
-            string referenceId, DateTime dateSent,
+        public Notification(NotificationId notificationId, int notificationType, string subject, string content, string referenceId, DateTime dateSent,
             DateTime dateCreated, DateTime dateUpdated, DateTime dateEnabled, DateTime dateDeleted)
             : base(dateCreated, dateUpdated, dateEnabled, dateDeleted)
         {
-            Apply(new NotificationCreated(notificationId, notificationType, iconClass, subject, content,
+            Apply(new NotificationCreated(notificationId, notificationType, subject, content,
                 referenceId, dateSent));
         }
 
@@ -89,7 +86,6 @@ namespace Cayent.Core.Domains.Models.Notifications
         {
             NotificationId = e.NotificationId;
             NotificationType = e.NotificationType;
-            IconClass = e.IconClass;
             Subject = e.Subject;
             Content = e.Content;
             ReferenceId = e.ReferenceId;
@@ -124,10 +120,13 @@ namespace Cayent.Core.Domains.Models.Notifications
         {
             yield return NotificationId;
         }
-
-        protected override void When(IDomainEvent e)
+        protected override void When<T>(T e)
         {
             When(e as dynamic);
         }
+        //protected override void When(IDomainEvent e)
+        //{
+        //    When(e as dynamic);
+        //}
     }
 }

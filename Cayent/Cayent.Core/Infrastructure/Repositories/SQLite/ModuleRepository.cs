@@ -13,8 +13,8 @@ namespace Cayent.Core.Infrastructure.Repositories.SQLite
 {
     public sealed class ModuleRepository : BaseRepository<Module>
     {
-        public ModuleRepository(IUnitOfWork unitOfWork)
-            : base(unitOfWork)
+        public ModuleRepository(IUnitOfWorkFactory unitOfWorkFactory)
+            : base(unitOfWorkFactory)
         {
 
         }

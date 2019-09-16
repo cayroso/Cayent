@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cayent.Core.CQRS.Apps.Dtos;
 using Cayent.Core.CQRS.Apps.Queries.Query;
+using Cayent.Core.CQRS.Notifications.Commands.Command;
 using Cayent.Core.CQRS.Notifications.Dtos;
 using Cayent.Core.CQRS.Notifications.Queries.Query;
 using Cayent.Core.CQRS.Permissions.Dtos;
 using Cayent.Core.CQRS.Permissions.Queries.Query;
 using Cayent.Core.CQRS.Roles.Dtos;
 using Cayent.Core.CQRS.Roles.Queries.Query;
+using Cayent.CQRS.Commands;
 using Cayent.CQRS.Queries;
 using Cayent.Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +25,7 @@ namespace Cayent.Web.Admin.RCL.Controllers
     {
         // GET: api/<controller>
         [HttpGet]
-        public IActionResult Get([FromServices]IUnitOfWork unitOfWork,
+        public IActionResult Get([FromServices]IUnitOfWorkFactory unitOfWorkFactory,
             [FromServices]IQueryHandlerDispatcher queryHandlerDispatcher,
             string criteria = "", int page = 1, int pageSize = 10)
         {
@@ -35,9 +37,15 @@ namespace Cayent.Web.Admin.RCL.Controllers
         }
 
         [HttpGet("navbar")]
-        public async Task<IActionResult> GetNavbarAsync([FromServices]IUnitOfWork unitOfWork,
+        public async Task<IActionResult> GetNavbarAsync([FromServices]IUnitOfWorkFactory  unitOfWorkFactory,
+            [FromServices]ICommandHandlerDispatcher commandHandlerDispatcher,
             [FromServices]IQueryHandlerDispatcher queryHandlerDispatcher)
         {
+            var unitOfWork = unitOfWorkFactory.Create();
+
+            var cmd = new CreateNotificationCommand("xact", "notif-" + Guid.NewGuid().ToString(), 1, "subject1", "content1", "reference1", DateTime.UtcNow);
+            commandHandlerDispatcher.Handle(cmd);
+            
             var query = new GetUnreadNotificationReceiversByUserIdQuery("xact", "system-administrator", "", 1, 10, "", true);
             var dto = queryHandlerDispatcher.Handle<GetUnreadNotificationReceiversByUserIdQuery, PaginatedNotificationReceiverDto>(query);
 
@@ -74,6 +82,7 @@ namespace Cayent.Web.Admin.RCL.Controllers
 
 
             //return Ok(model);
+            unitOfWork.Commit();
 
             return Ok(dto);
         }

@@ -16,7 +16,7 @@ namespace Cayent.Core.CQRS.Roles.Queries.Handler
         IQueryHandler<SearchRolesQuery, PaginatedSearchedRoleDto>,
         IQueryHandler<GetRoleByIdQuery, RoleDetailDto>
     {
-        public RoleQueryHandler(IUnitOfWork unitOfWork)
+        public RoleQueryHandler(IUnitOfWorkFactory unitOfWork)
             : base(unitOfWork)
         {
 

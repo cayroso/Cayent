@@ -12,7 +12,7 @@ namespace Cayent.Web.App.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet([FromServices]IUnitOfWork unitOfWork, [FromServices]ICommandHandlerDispatcher commandHandlerDispatcher)
+        public void OnGet([FromServices]ICommandHandlerDispatcher commandHandlerDispatcher)
         {
             //var cmd1 = new CreateAppCommand(string.Empty, Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), string.Empty, 1);
 

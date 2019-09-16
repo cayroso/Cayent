@@ -8,17 +8,18 @@ namespace Cayent.Core.CQRS.BaseClasses
 {
     public abstract class BaseQueryHandler
     {
-        protected IDbConnection DbConnection;
-        protected IDbTransaction DbTransaction;
+        private readonly IUnitOfWork _unitOfWork;
+        protected IDbConnection DbConnection => _unitOfWork.GetDbConnection();
+        protected IDbTransaction DbTransaction => _unitOfWork.GetDbTransaction();
 
-        public BaseQueryHandler(IUnitOfWork unitOfWork)
+        public BaseQueryHandler(IUnitOfWorkFactory unitOfWorkFactory)
         {
-            if (unitOfWork == null)
+            if (unitOfWorkFactory == null)
             {
-                throw new ArgumentNullException(nameof(unitOfWork));
+                throw new ArgumentNullException(nameof(unitOfWorkFactory));
+
             }
-            DbConnection = unitOfWork.GetDbConnection();
-            DbTransaction = unitOfWork.GetDbTransaction();
+            _unitOfWork = unitOfWorkFactory.Create();
         }
     }
 }

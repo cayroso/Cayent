@@ -16,7 +16,7 @@ namespace Cayent.Core.CQRS.Users.Queries.Handler
         IQueryHandler<SearchUsersQuery, PaginatedSearchedUserDto>,
         IQueryHandler<GetUserByIdQuery, UserDetailDto>
     {
-        public UserQueryHandler(IUnitOfWork unitOfWork)
+        public UserQueryHandler(IUnitOfWorkFactory unitOfWork)
             : base(unitOfWork)
         {
 

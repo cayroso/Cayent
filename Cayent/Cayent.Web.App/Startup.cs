@@ -82,7 +82,7 @@ namespace Cayent.Web.App
                 })
                 .AddJsonOptions(opt =>
                 {
-                    opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                    opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     opt.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
                     opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 })

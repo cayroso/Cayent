@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cayent.Core.CQRS.Notifications.Dtos
 {
-    public class NotificationReceiverDto : EntityBaseDto, IResponse
+    public class NotificationReceiverDto : BaseDto, IResponse
     {
         public string NotificationId { get; set; }
         public NotificationDto Notification { get; set; }

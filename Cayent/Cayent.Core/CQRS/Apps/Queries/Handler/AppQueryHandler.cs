@@ -22,7 +22,7 @@ namespace Cayent.Core.CQRS.Apps.Queries.Handler
         //IQueryHandler<GetAppByUserQuery, AppDto>
 
     {
-        public AppQueryHandler(IUnitOfWork unitOfWork)
+        public AppQueryHandler(IUnitOfWorkFactory  unitOfWork)
             : base(unitOfWork)
         {
 

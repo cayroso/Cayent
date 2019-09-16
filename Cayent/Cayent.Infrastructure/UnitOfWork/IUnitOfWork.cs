@@ -14,6 +14,6 @@ namespace Cayent.Infrastructure.UnitOfWork
         void Commit();
         void Rollback();
 
-        IRepository<TEntity> CreateRepository<TEntity>() where TEntity : Entity;
+        //IRepository<TEntity> CreateRepository<TEntity>() where TEntity : Entity;
     }
 }

@@ -4,37 +4,50 @@ using Cayent.Infrastructure.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
 using System.Text;
 
 namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
-{
+{/// <summary>
+/// ////
+/// </summary>
     public sealed class UnitOfWork : IDisposable, IUnitOfWork
     {
         private readonly string UnitOfWorkId = Guid.NewGuid().ToString();
-        private readonly IRepositoryFactory _repositoryFactory;
-        private IDbTransaction _dbTransaction;
+        //private readonly IRepositoryFactory _repositoryFactory;
+        private SQLiteTransaction _dbTransaction;
 
-        public UnitOfWork(IRepositoryFactory repositoryFactory, IDbTransaction dbTransaction)
+        public UnitOfWork(SQLiteTransaction dbTransaction)
         {
-            _repositoryFactory = repositoryFactory ?? throw new ArgumentNullException(nameof(repositoryFactory));
-            
+            //_repositoryFactory = repositoryFactory ?? throw new ArgumentNullException(nameof(repositoryFactory));
+
             _dbTransaction = dbTransaction;
         }
 
-        IRepository<TEntity> IUnitOfWork.CreateRepository<TEntity>()
-        {
-            var repo = _repositoryFactory.Create<TEntity>();
+        //IRepository<TEntity> IUnitOfWork.CreateRepository<TEntity>()
+        //{
+        //    var repo = _repositoryFactory.Create<TEntity>();
 
-            return repo;
-        }
+        //    return repo;
+        //}
 
         IDbConnection IUnitOfWork.GetDbConnection()
         {
+            if (_dbTransaction == null || _dbTransaction.Connection == null)
+            {
+                throw new InvalidOperationException("transaction has already been committed/rolledback.");
+            }
+
             return _dbTransaction.Connection;
         }
 
         IDbTransaction IUnitOfWork.GetDbTransaction()
         {
+            if (_dbTransaction == null)
+            {
+                throw new InvalidOperationException("transaction has already been committed/rolledback.");
+            }
+
             return _dbTransaction;
         }
 
@@ -46,8 +59,9 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
             }
 
             _dbTransaction.Commit();
+            //_dbTransaction.Connection.Close();
             //_dbTransaction.Dispose();
-            //_dbTransaction = null;
+            //_dbConnection = null;
         }
 
         void IUnitOfWork.Rollback()
@@ -58,8 +72,9 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
             }
 
             _dbTransaction.Rollback();
+            //_dbTransaction.Connection.Close();
             //_dbTransaction.Dispose();
-            //_dbTransaction = null;
+            //_dbConnection = null;
         }
 
         #region IDisposable Support
@@ -71,17 +86,15 @@ namespace Cayent.Core.Infrastructure.UnitOfWork.SQLite
             {
                 if (disposing)
                 {
-                    if (_dbTransaction != null)
+
+                    // TODO: dispose managed state (managed objects).
+                    if (_dbTransaction != null && _dbTransaction.Connection != null)
                     {
-                        // TODO: dispose managed state (managed objects).
-                        if (_dbTransaction.Connection != null)
-                        {
-                            _dbTransaction.Rollback();
-                            //_dbTransaction.Dispose();
-                            //    _dbTransaction = null;
-                        }
+                        _dbTransaction.Rollback();
                         //_dbTransaction.Dispose();
+                        //    _dbTransaction = null;
                     }
+                    //_dbTransaction.Dispose();
 
                 }
 

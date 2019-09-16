@@ -11,18 +11,20 @@ namespace Cayent.Core.Infrastructure.Data.Notification
         {
             Id = string.Empty;
             NotificationType = 0;
-            IconClass = string.Empty;
             Subject = string.Empty;
             Content = string.Empty;
             ReferenceId = string.Empty;
             DateSent = DateTime.MaxValue;
+
+            Receivers = new List<NotificationReceiverData>();
         }
 
         public int NotificationType { get; set; }
-        public string IconClass { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }
         public string ReferenceId { get; set; }
         public DateTime DateSent { get; set; }
+
+        public List<NotificationReceiverData> Receivers { get; set; }
     }
 }

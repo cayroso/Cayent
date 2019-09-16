@@ -2,6 +2,7 @@
 using Cayent.Core.CQRS.Notifications.Dtos;
 using Cayent.Core.CQRS.Notifications.Queries.Query;
 using Cayent.CQRS.Queries;
+using Cayent.Infrastructure.Services;
 using Cayent.Infrastructure.UnitOfWork;
 using Dapper;
 using System;
@@ -17,19 +18,20 @@ namespace Cayent.Core.CQRS.Notifications.Queries.Handler
         IQueryHandler<GetUnreadNotificationReceiversByUserIdQuery, PaginatedNotificationReceiverDto>
 
     {
-        public NotificationQueryHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public NotificationQueryHandler(IUnitOfWorkFactory  unitOfWorkFactory) 
+            : base(unitOfWorkFactory)
         {
         }
 
         PaginatedNotificationReceiverDto IQueryHandler<SearchNotificationReceiversByUserIdQuery, PaginatedNotificationReceiverDto>.Handle(SearchNotificationReceiversByUserIdQuery query)
         {
             const string sql = @"
-select  nr.NotificationReceiverId as 'Id', nr.NotificationId, nr.DateRead
+select  nr.NotificationReceiverId, nr.NotificationId, nr.DateRead
         , nr.DateCreated, nr.DateUpdated, nr.DateEnabled, nr.DateDeleted
 from    core_NotificationReceiver nr
 where   nr.ReceiverId = @UserId
 ;
-select  n.NotificationId as 'Id', n.NotificationType, n.IconClass, n.Subject, n.Content, n.ReferenceId, n.DateSent
+select  n.NotificationId, n.NotificationType, n.IconClass, n.Subject, n.Content, n.ReferenceId, n.DateSent
         , n.DateCreated, n.DateUpdated, n.DateEnabled, n.DateDeleted
 from    core_Notification n
 join    core_NotificationReceiver nr on (nr.NotificationId = n.NotificationId)
@@ -46,11 +48,11 @@ where   nr.ReceiverId = @UserId
 
                 items.ForEach(p =>
                 {
-                    p.Notification = subItems.SingleOrDefault(q => q.Id == p.NotificationId);
+                    p.Notification = subItems.SingleOrDefault(q => q.NotificationId == p.NotificationId);
                 });
 
                 var count = items.Count;
-                
+
                 var paginated = new PaginatedNotificationReceiverDto(items, query.Page, query.PageSize, count);
 
                 return paginated;
@@ -68,7 +70,7 @@ from    core_NotificationReceiver nr
 where   nr.ReceiverId = @UserId
 and     nr.DateRead > @Today
 ;
-select  n.NotificationId as 'Id', n.NotificationType, n.IconClass, n.Subject, n.Content, n.ReferenceId, n.DateSent
+select  n.NotificationId as 'Id', n.NotificationType, n.Subject, n.Content, n.ReferenceId, n.DateSent
         , n.DateCreated, n.DateUpdated, n.DateEnabled, n.DateDeleted
 from    core_Notification n
 join    core_NotificationReceiver nr on (nr.NotificationId = n.NotificationId)
@@ -87,7 +89,7 @@ and     nr.DateRead > @Today
 
                 items.ForEach(p =>
                 {
-                    p.Notification = subItems.SingleOrDefault(q => q.Id == p.NotificationId);
+                    p.Notification = subItems.SingleOrDefault(q => q.NotificationId == p.NotificationId);
                 });
 
                 var count = items.Count;

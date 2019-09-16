@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Cayent.Core.CQRS.Apps.Dtos
 {
-    public class AppDto : EntityBaseDto, IResponse
+    public class AppDto : BaseDto, IResponse
     {
         public AppDto()
         {
@@ -28,7 +28,7 @@ namespace Cayent.Core.CQRS.Apps.Dtos
 
     }
 
-    public class SearchedAppDto : EntityBaseDto, IResponse
+    public class SearchedAppDto : BaseDto, IResponse
     {
         public string Title { get; set; }
         public string Description { get; set; }

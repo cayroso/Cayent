@@ -8,7 +8,7 @@ using System.Text;
 namespace Cayent.Core.CQRS.Users.Dtos
 {
     
-    public class UserDto: EntityBaseDto, IResponse
+    public class UserDto: BaseDto, IResponse
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

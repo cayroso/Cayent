@@ -6,13 +6,15 @@ using System.Text;
 
 namespace Cayent.Core.CQRS.Notifications.Dtos
 {
-    public class NotificationDto : EntityBaseDto, IResponse
+    public class NotificationDto : BaseDto, IResponse
     {
+        public string NotificationId { get; set; }
         public int NotificationType { get; set; }
         public string IconClass { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }
         public string ReferenceId { get; set; }
         public DateTime DateSent { get; set; }
+        
     }
 }

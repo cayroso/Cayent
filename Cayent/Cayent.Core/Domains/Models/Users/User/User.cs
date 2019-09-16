@@ -105,10 +105,13 @@ namespace Cayent.Core.Domains.Models.Users.User
         {
             yield return Id;
         }
-
-        protected override void When(IDomainEvent e)
+        protected override void When<T>(T e)
         {
             When(e as dynamic);
         }
+        //protected override void When(IDomainEvent e)
+        //{
+        //    When(e as dynamic);
+        //}
     }
 }

@@ -224,7 +224,6 @@ create table core_Notification
 (
 	NotificationId varchar(32) not null
 	, NotificationType int not null
-	, IconClass varchar(32) not null
 	, [Subject] varchar(512) not null
 	, Content varchar(8000) not null
 	, ReferenceId varchar(512) not null
@@ -481,8 +480,8 @@ insert into core_MembershipRole(MembershipId, RoleId, DateCreated, DateEnabled)
 ;
 
 --	test notification
-insert into core_Notification(NotificationId, NotificationType, IconClass, [Subject], Content, ReferenceId, DateSent, DateCreated, DateUpdated, DateEnabled, DateDeleted)
-	values	('notif1', 1, 'fa fa-info', 'Test Notification', 'This is a test notification', 'none', '2001-01-01', '2000-01-01', '2000-01-01', '9999-12-31', '9999-12-31')
+insert into core_Notification(NotificationId, NotificationType, [Subject], Content, ReferenceId, DateSent, DateCreated, DateUpdated, DateEnabled, DateDeleted)
+	values	('notif1', 1, 'Test Notification', 'This is a test notification', 'none', '2001-01-01', '2000-01-01', '2000-01-01', '9999-12-31', '9999-12-31')
 ;
 insert into core_NotificationReceiver(NotificationReceiverId, NotificationId, ReceiverId, DateRead, DateCreated, DateUpdated, DateEnabled, DateDeleted)
 	values	('notif-receiver-1', 'notif1', 'system-administrator', '2001-01-01', '2000-01-01', '2000-01-01', '9999-12-31', '9999-12-31')
@@ -490,8 +489,8 @@ insert into core_NotificationReceiver(NotificationReceiverId, NotificationId, Re
 			, ('notif-receiver-3', 'notif1', 'administrator', '2001-01-01', '2000-01-01', '2000-01-01', '9999-12-31', '9999-12-31')
 ;
 
-insert into core_Notification(NotificationId, NotificationType, IconClass, [Subject], Content, ReferenceId, DateSent, DateCreated, DateUpdated, DateEnabled, DateDeleted)
-	values	('notif2', 1, 'fa fa-info', 'Hello Notification', 'This is a Hello notification', 'none', '2001-01-01', '2000-01-01', '2000-01-01', '9999-12-31', '9999-12-31')
+insert into core_Notification(NotificationId, NotificationType, [Subject], Content, ReferenceId, DateSent, DateCreated, DateUpdated, DateEnabled, DateDeleted)
+	values	('notif2', 1, 'Hello Notification', 'This is a Hello notification', 'none', '2001-01-01', '2000-01-01', '2000-01-01', '9999-12-31', '9999-12-31')
 ;
 insert into core_NotificationReceiver(NotificationReceiverId, NotificationId, ReceiverId, DateRead, DateCreated, DateUpdated, DateEnabled, DateDeleted)
 	values	('notif-receiver-4', 'notif2', 'system-administrator', '9999-01-01', '2000-01-01', '2000-01-01', '9999-12-31', '9999-12-31')
