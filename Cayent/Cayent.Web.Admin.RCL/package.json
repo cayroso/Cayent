@@ -24,7 +24,7 @@
   "dependencies": {
     "@aspnet/signalr": "^1.1.4",
     "@fortawesome/fontawesome-free": "^5.7.2",
-    "angular": "^1.7.7",
+    "angular": "^1.8.0",
     "angular-animate": "^1.7.7",
     "angular-toastr": "^2.1.1",
     "angular-ui-bootstrap": "^2.5.6",
